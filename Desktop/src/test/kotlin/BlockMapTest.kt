@@ -9,6 +9,6 @@ class BlockMapTest {
     @Test
     fun testFindBlockRowFromCellIndex() {
 
-
+        assert(true)
     }
 }
