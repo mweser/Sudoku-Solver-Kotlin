@@ -1,6 +1,5 @@
 class Table {
 
-    internal var values = Array<Array<Int>>(9) { arrayOfNulls(9) }
-
+    var blocks = Array<Block>(9) {i -> Block(index = i, BlockMap.indexToBlockName(i) }
 
 }

@@ -12,14 +12,20 @@ enum class BlockName {
 
 
 class BlockMap {
-    fun lookUpBlock(blockRow: Int, blockColumn: Int): BlockName {
-        if (blockRow > 8 || blockColumn > 8) {
-            throw IndexOutOfBoundsException()
+
+    companion object {
+        fun indexToBlockName(blockRow: Int, blockColumn: Int): BlockName {
+            return indexToBlockName(blockRow * 3 + blockColumn)
         }
 
-        val indexValue = blockRow * 3 + blockColumn
-        return BlockName.values()[indexValue]
+        fun indexToBlockName(index: Int): BlockName {
+            if (index > 8) {
+                throw IndexOutOfBoundsException()
+            }
+            return BlockName.values()[index]
+        }
     }
+
 }
 
 
