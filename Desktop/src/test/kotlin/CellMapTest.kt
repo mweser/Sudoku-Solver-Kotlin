@@ -1,6 +1,6 @@
 import org.junit.Test
 
-class BlockMapTest {
+class CellMapTest {
 
     @org.junit.Before
     fun setUp() {

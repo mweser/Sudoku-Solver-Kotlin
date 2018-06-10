@@ -1,0 +1,3 @@
+package logic
+
+class Solver

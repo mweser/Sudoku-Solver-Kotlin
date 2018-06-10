@@ -1,3 +1,7 @@
+package logic
+
+import components.CellValue
+
 class PossibilitySet(val cellValue: CellValue = CellValue.EMPTY) {
 
     var array = ArrayList<CellValue>()
