@@ -25,9 +25,22 @@ class BlockMap {
             return blockRow * 3 + blockColumn
         }
 
-        fun findBlockIndexFromCellIndex(cellIndex: Int): Int {
-            val 
+        fun findBlockRowFromCellIndex(cellIndex: Int): Int {
 
+            val cellRow = findCellRow(cellIndex)
+            val blockRow = cellRow % 3
+
+            return 0
+        }
+
+        fun findBlockColumnFromCellIndex(cellIndex: Int): Int {
+
+            return 0
+        }
+
+        fun findBlockIndexFromCellIndex(cellIndex: Int): Int {
+
+            return 0
         }
 
         fun findBlockRow(blockIndex: Int): Int {
