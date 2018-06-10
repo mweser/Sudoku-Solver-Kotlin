@@ -12,9 +12,9 @@ enum class CellValue {
 }
 
 class Cell(val index: Int, var value: CellValue) {
-    val row: Int
-    val column: Int
-    val blockIndex: Int
+    val rowIndex: Int = BlockMap.findCellRow(index)
+    val columnIndex: Int = BlockMap.findCellColumn(index)
+    val blockIndex: Int =
     val blockName: BlockName
 
     val block: Block

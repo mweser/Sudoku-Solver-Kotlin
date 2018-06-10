@@ -1,15 +1,15 @@
-import BlockMap.Companion.findBlockColumnFromIndex
-import BlockMap.Companion.findBlockRowFromIndex
+import BlockMap.Companion.findBlockColumn
+import BlockMap.Companion.findBlockRow
 
 abstract class CellSet(val index: Int) {
-    var cells = Array(9, { Cell(CellValue.EMPTY) })
-
-    fun isDone(): Boolean {
-        for (cell in cells) if (cell.value == CellValue.EMPTY) {
-            return false
-        }
-        return true
-    }
+//    var cells = Array(9, { Cell(CellValue.EMPTY) })
+//
+//    fun isDone(): Boolean {
+//        for (cell in cells) if (cell.value == CellValue.EMPTY) {
+//            return false
+//        }
+//        return true
+//    }
 }
 
 class Row(index: Int) : CellSet(index) {
@@ -23,8 +23,8 @@ class Column(index: Int) : CellSet(index) {
 class Block(index: Int) : CellSet(index) {
     val blockName = BlockName.values()[index]
 
-    val blockRow = findBlockRowFromIndex(index)
-    val blockColumn = findBlockColumnFromIndex(index)
+    val blockRow = findBlockRow(index)
+    val blockColumn = findBlockColumn(index)
 
     val minRow = blockRow * 3
     val maxRow = minRow + 2
