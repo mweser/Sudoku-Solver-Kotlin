@@ -14,15 +14,30 @@ enum class BlockName {
 class BlockMap {
 
     companion object {
-        fun indexToBlockName(blockRow: Int, blockColumn: Int): BlockName {
-            return indexToBlockName(blockRow * 3 + blockColumn)
-        }
-
-        fun indexToBlockName(index: Int): BlockName {
-            if (index > 8) {
+        fun indexToBlockName(blockRow: Int, blockColumn: Int) : BlockName {
+            if (blockRow > 2 || blockColumn > 2) {
                 throw IndexOutOfBoundsException()
             }
-            return BlockName.values()[index]
+            return BlockName.values()[blockRow * 3 + blockColumn]
+        }
+
+        fun findBlockRowFromIndex(blockIndex: Int) : Int {
+            return blockIndex % 3
+        }
+
+        fun findBlockColumnFromIndex(blockIndex: Int) : Int {
+            return blockIndex - 3 * findBlockRowFromIndex(blockIndex)
+        }
+
+        fun findCellRowFromIndex(cellIndex: Int) : Int {
+
+
+            return 0
+        }
+
+        fun findCellColumnFromIndex(cellIndex: Int) : Int {
+
+            return 0
         }
     }
 
