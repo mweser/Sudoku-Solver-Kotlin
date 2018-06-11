@@ -33,7 +33,7 @@ abstract class CellSet(val index: Int) {
         var values = ""
 
         for (i in 0 until cells.size) {
-            values += "${evenlySpace(cells[i].block.maxRow)} "
+            values += "${filter(cells[i].value.ordinal)} "
 
             if (i % 3 == 2 && i < cells.size - 1) {
                 values += "| "
@@ -43,15 +43,15 @@ abstract class CellSet(val index: Int) {
         return values
     }
 
-    fun evenlySpace(value: String): String {
+    fun filter(value: String): String {
         return value
     }
 
-    fun evenlySpace(value: Int): String {
-        return if (value < 10) {
-            " $value"
-        } else {
-            value.toString()
+    fun filter(value: Int): String {
+        return when {
+            value == 0 -> "__"
+            value < 10 -> " $value"
+            else -> value.toString()
         }
     }
 }
