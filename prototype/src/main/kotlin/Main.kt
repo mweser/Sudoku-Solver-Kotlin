@@ -1,7 +1,9 @@
-import solver.Solver
+import input.FileInput
 
 fun main(args: Array<String>) {
 
-    Solver.run()
+//    Solver.run()
+
+    FileInput.readFile()
 
 }
