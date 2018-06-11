@@ -8,8 +8,8 @@ class Table {
     var rows = Array(9) { i -> Row(index = i) }
     var columns = Array(9) { i -> Column(index = i) }
 
-    var cells = Array(81) { index ->
-        Cell(index,
+    var cells = Array(81) {
+        index -> Cell(index,
                 CellValue.EMPTY,
                 blocks[CellMap.toBlockIndex(index)],
                 rows[CellMap.toRow(index)],

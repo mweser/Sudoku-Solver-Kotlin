@@ -33,7 +33,7 @@ abstract class CellSet(val index: Int) {
         var values = ""
 
         for (cell in cells) {
-            values += "${cell.column.index} "
+            values += "${cell.block.index} "
         }
 
         return values
