@@ -23,7 +23,7 @@ object Table {
         }
 
         for (i in 0 until cells.size) {
-            cells[i].value = CellValue.values()[inputArray[i]]
+            cells[i].initializeCellValue(inputArray[i])
         }
 
     }

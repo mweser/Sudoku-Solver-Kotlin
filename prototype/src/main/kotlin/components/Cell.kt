@@ -1,5 +1,8 @@
 package components
 
+import components.CellValue.EMPTY
+import components.CellValue.values
+
 enum class CellValue {
     EMPTY, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE
 }
@@ -7,17 +10,27 @@ enum class CellValue {
 class Cell(val index: Int,
            val block: Block,
            val row: Row,
-           val column: Column,
-           var value: CellValue = CellValue.EMPTY) {
+           val column: Column) {
+
+    var isMutable: Boolean = true
+    var prevValue: CellValue = EMPTY
 
     init { addCellToSets(block, row, column) }
 
-    var isOriginal: Boolean = false
-    var originalValue: CellValue = CellValue.EMPTY
+    var value: CellValue = EMPTY
+        set(value) {
+            if (isMutable) {
+                field = value
+            }
+        }
 
-    fun addValue(intValue: Int) {
-        value = CellValue.values()[intValue]
-        originalValue = value
+
+    fun initializeCellValue(intValue: Int) {
+        value = values()[intValue]
+
+        if (intValue in 1..9) {
+            isMutable = false
+        }
     }
 
     private fun <T: Row> addCellToSets(vararg rows: T) {

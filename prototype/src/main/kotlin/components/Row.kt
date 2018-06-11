@@ -38,6 +38,13 @@ open class Row(val index: Int) {
         return values
     }
 
+    private fun filter(value: Boolean): String {
+        return when {
+            value -> "T"
+            else -> "F"
+        }
+    }
+
     private fun filter(value: String): String {
         return value
     }
