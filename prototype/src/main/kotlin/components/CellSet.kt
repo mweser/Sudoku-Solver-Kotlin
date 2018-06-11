@@ -33,7 +33,7 @@ abstract class CellSet(val index: Int) {
         var values = ""
 
         for (i in 0 until cells.size) {
-            values += "${fillSpaceIfLessThan10(cells[i].index)} "
+            values += "${evenlySpace(cells[i].block.maxRow)} "
 
             if (i % 3 == 2 && i < cells.size - 1) {
                 values += "| "
@@ -43,7 +43,11 @@ abstract class CellSet(val index: Int) {
         return values
     }
 
-    fun fillSpaceIfLessThan10(value: Int): String {
+    fun evenlySpace(value: String): String {
+        return value
+    }
+
+    fun evenlySpace(value: Int): String {
         return if (value < 10) {
             " $value"
         } else {

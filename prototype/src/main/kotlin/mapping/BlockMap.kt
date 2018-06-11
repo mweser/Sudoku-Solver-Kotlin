@@ -10,11 +10,11 @@ object BlockMap {
     }
 
     fun toBlockRow(blockIndex: Int): Int {
-        return blockIndex % 3
+        return blockIndex / 3
     }
 
     fun toBlockColumn(blockIndex: Int): Int {
-        return blockIndex - 3 * toBlockRow(blockIndex)
+        return blockIndex % 3
     }
 
     fun toMinRow(blockIndex: Int): Int {
