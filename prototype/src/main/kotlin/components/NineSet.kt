@@ -2,7 +2,7 @@ package components
 
 import mapping.BlockMap
 
-abstract class CellSet(val index: Int) {
+abstract class NineSet(val index: Int) {
     var cells = ArrayList<Cell>()
     var size = 0
 
@@ -56,11 +56,11 @@ abstract class CellSet(val index: Int) {
     }
 }
 
-class Row(index: Int) : CellSet(index)
+class Row(index: Int) : NineSet(index)
 
-class Column(index: Int) : CellSet(index)
+class Column(index: Int) : NineSet(index)
 
-class Block(index: Int) : CellSet(index) {
+class Block(index: Int) : NineSet(index) {
     val position = BlockMap.toBlockName(index)
 
     val blockRow = BlockMap.toBlockRow(index)

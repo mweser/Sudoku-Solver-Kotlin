@@ -9,12 +9,13 @@ class Cell(val index: Int, var value: CellValue,
            val row: Row,
            val column: Column) {
 
-    init {
-        block.addCell(this)
-        row.addCell(this)
-        column.addCell(this)
-    }
+    init { addCellToSets(block, row, column) }
 
+    fun <T: NineSet> addCellToSets(vararg nineSets: T) {
+        for (nineSet in nineSets) {
+            nineSet.addCell(this)
+        }
+    }
 
     override fun toString(): String {
         return block.position.toString()

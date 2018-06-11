@@ -1,4 +1,4 @@
-package logic
+package solver
 
 import components.CellValue
 

@@ -1,0 +1,3 @@
+package solver
+
+class Iteration()

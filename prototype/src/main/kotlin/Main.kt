@@ -1,8 +1,7 @@
-import components.Table
+import solver.Solver
 
 fun main(args: Array<String>) {
 
-    var table = Table()
-    println(table)
+    Solver.run()
 
 }

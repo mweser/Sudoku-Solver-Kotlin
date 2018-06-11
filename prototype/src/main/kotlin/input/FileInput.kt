@@ -1,6 +1,6 @@
 package input
 
 class FileInput {
-    
+
 
 }
