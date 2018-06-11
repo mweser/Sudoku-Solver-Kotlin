@@ -17,10 +17,26 @@ abstract class CellSet(val index: Int) {
     }
 
     fun isDone(): Boolean {
+        // todo look into making this a lambda over the collection
         for (cell in cells) if (cell.value == components.CellValue.EMPTY) {
             return false
         }
         return true
+    }
+
+    override fun toString(): String {
+        return "${javaClass.canonicalName} $index:    ${printCellValues()}"
+    }
+
+    fun printCellValues(): String {
+        // todo look into lambda for this
+        var values = ""
+
+        for (cell in cells) {
+            values += "${cell.column.index} "
+        }
+
+        return values
     }
 }
 
@@ -29,7 +45,7 @@ class Row(index: Int) : CellSet(index)
 class Column(index: Int) : CellSet(index)
 
 class Block(index: Int) : CellSet(index) {
-    val blockName = BlockMap.toBlockName(index)
+    val position = BlockMap.toBlockName(index)
 
     val blockRow = BlockMap.toBlockRow(index)
     val blockColumn = BlockMap.toBlockColumn(index)
@@ -38,9 +54,4 @@ class Block(index: Int) : CellSet(index) {
     val maxRow = BlockMap.toMaxRow(index)
     val minColumn = BlockMap.toMinColumn(index)
     val maxColumn = BlockMap.toMaxColumn(index)
-
-
-    override fun toString(): String {
-        return "Index: $index, Name: $blockName"
-    }
 }

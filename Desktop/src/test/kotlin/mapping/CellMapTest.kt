@@ -1,3 +1,5 @@
+package mapping
+
 import org.junit.Test
 
 class CellMapTest {

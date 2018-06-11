@@ -4,7 +4,6 @@ import mapping.CellMap
 
 class Table {
 
-
     var blocks = Array(9) { i -> Block(index = i) }
     var rows = Array(9) { i -> Row(index = i) }
     var columns = Array(9) { i -> Column(index = i) }
@@ -18,10 +17,17 @@ class Table {
     }
 
     fun printBlocks() {
-        for (i in blocks) {
-            println(i)
+
+//        for (item in blocks) {
+//            println(item)
+//        }
+
+        for (item in rows) {
+            println(item)
         }
+//
+//        for (item in columns) {
+//            println(item)
+//        }
     }
-
-
 }
