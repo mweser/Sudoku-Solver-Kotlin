@@ -1,0 +1,6 @@
+package input
+
+class FileInput {
+    
+
+}
