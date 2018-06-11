@@ -6,6 +6,14 @@ object CellMap {
         return columnIndex + rowIndex * 9
     }
 
+    fun toRow(cellIndex: Int): Int {
+        return cellIndex / 9
+    }
+
+    fun toColumn(cellIndex: Int): Int {
+        return cellIndex % 9
+    }
+
     fun toBlockIndex(cellIndex: Int): Int {
         return BlockMap.fromBlockRowColumn(toBlockRow(cellIndex), toBlockColumn(cellIndex))
     }
@@ -15,22 +23,14 @@ object CellMap {
     }
 
     fun toBlockRow(cellIndex: Int): Int {
-        return toRow(cellIndex) / 3
+        return toBlockRowOrColumn(toRow(cellIndex))
     }
 
     fun toBlockColumn(cellIndex: Int): Int {
-        return toColumn(cellIndex) / 3
+        return toBlockRowOrColumn(toColumn(cellIndex))
     }
 
-    fun toRow(cellIndex: Int): Int {
-        return cellIndex / 9
-    }
-
-    fun toColumn(cellIndex: Int): Int {
-        return cellIndex % 9
+    private fun toBlockRowOrColumn(value: Int): Int {
+        return value / 3
     }
 }
-
-
-
-

@@ -9,13 +9,14 @@ open class Row(val index: Int) {
             false
         } else {
             cells.add(cell)
+            // call elimination
             size++
             true
         }
     }
 
     fun isDone(): Boolean {
-        for (cell in cells) if (cell.value == components.CellValue.EMPTY) {
+        for (cell in cells) if (cell.value == CellValue.EMPTY) {
             return false
         }
         return true
@@ -25,7 +26,7 @@ open class Row(val index: Int) {
         return "${printCellValues()}"
     }
 
-    fun printCellValues(): String {
+    private fun printCellValues(): String {
         var values = ""
         for (i in 0 until cells.size) {
             values += "${filter(cells[i].value.ordinal)} "
@@ -34,15 +35,14 @@ open class Row(val index: Int) {
                 values += "| "
             }
         }
-
         return values
     }
 
-    fun filter(value: String): String {
+    private fun filter(value: String): String {
         return value
     }
 
-    fun filter(value: Int): String {
+    private fun filter(value: Int): String {
         return when {
             value == 0 -> "__"
             value < 10 -> " $value"

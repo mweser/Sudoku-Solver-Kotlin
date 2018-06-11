@@ -10,8 +10,5 @@ object Solver {
         if (Config.DISPLAY_TABLE) {
             println(table)
         }
-
-        
-
     }
 }
