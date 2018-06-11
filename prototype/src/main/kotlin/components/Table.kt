@@ -16,18 +16,17 @@ class Table {
                 columns[CellMap.toColumn(index)])
     }
 
-    fun printBlocks() {
+    override fun toString(): String {
+        var tableOut = ""
 
-//        for (item in blocks) {
-//            println(item)
-//        }
+        for (i in 0 until rows.size) {
+            tableOut += "${rows[i]}\n"
 
-        for (item in rows) {
-            println(item)
+            if (i % 3 == 2 && i < rows.size - 1) {
+                tableOut += "------------------------------\n"
+            }
         }
-//
-//        for (item in columns) {
-//            println(item)
-//        }
+
+        return tableOut
     }
 }

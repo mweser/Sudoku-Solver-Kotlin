@@ -25,18 +25,30 @@ abstract class CellSet(val index: Int) {
     }
 
     override fun toString(): String {
-        return "${javaClass.canonicalName} $index:    ${printCellValues()}"
+        return "${printCellValues()}"
     }
 
     fun printCellValues(): String {
         // todo look into lambda for this
         var values = ""
 
-        for (cell in cells) {
-            values += "${cell.block.index} "
+        for (i in 0 until cells.size) {
+            values += "${fillSpaceIfLessThan10(cells[i].index)} "
+
+            if (i % 3 == 2 && i < cells.size - 1) {
+                values += "| "
+            }
         }
 
         return values
+    }
+
+    fun fillSpaceIfLessThan10(value: Int): String {
+        return if (value < 10) {
+            " $value"
+        } else {
+            value.toString()
+        }
     }
 }
 
