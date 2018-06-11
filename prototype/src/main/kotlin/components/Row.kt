@@ -1,8 +1,6 @@
 package components
 
-import mapping.BlockMap
-
-abstract class NineSet(val index: Int) {
+open class Row(val index: Int) {
     var cells = ArrayList<Cell>()
     var size = 0
 
@@ -17,7 +15,6 @@ abstract class NineSet(val index: Int) {
     }
 
     fun isDone(): Boolean {
-        // todo look into making this a lambda over the collection
         for (cell in cells) if (cell.value == components.CellValue.EMPTY) {
             return false
         }
@@ -29,9 +26,7 @@ abstract class NineSet(val index: Int) {
     }
 
     fun printCellValues(): String {
-        // todo look into lambda for this
         var values = ""
-
         for (i in 0 until cells.size) {
             values += "${filter(cells[i].value.ordinal)} "
 
@@ -56,18 +51,4 @@ abstract class NineSet(val index: Int) {
     }
 }
 
-class Row(index: Int) : NineSet(index)
-
-class Column(index: Int) : NineSet(index)
-
-class Block(index: Int) : NineSet(index) {
-    val position = BlockMap.toBlockPosition(index)
-
-    val blockRow = BlockMap.toBlockRow(index)
-    val blockColumn = BlockMap.toBlockColumn(index)
-
-    val minRow = BlockMap.toMinRow(index)
-    val maxRow = BlockMap.toMaxRow(index)
-    val minColumn = BlockMap.toMinColumn(index)
-    val maxColumn = BlockMap.toMaxColumn(index)
-}
+class Column(index: Int): Row(index)

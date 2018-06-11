@@ -16,7 +16,6 @@ object CellMap {
 
     fun toBlockRow(cellIndex: Int): Int {
         return toRow(cellIndex) / 3
-
     }
 
     fun toBlockColumn(cellIndex: Int): Int {

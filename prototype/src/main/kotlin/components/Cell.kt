@@ -4,20 +4,21 @@ enum class CellValue {
     EMPTY, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE
 }
 
-class Cell(val index: Int, var value: CellValue,
+class Cell(val index: Int,
            val block: Block,
            val row: Row,
-           val column: Column) {
+           val column: Column,
+           var value: CellValue = CellValue.EMPTY) {
 
     init { addCellToSets(block, row, column) }
 
-    fun <T: NineSet> addCellToSets(vararg nineSets: T) {
-        for (nineSet in nineSets) {
-            nineSet.addCell(this)
+    private fun <T: Row> addCellToSets(vararg rows: T) {
+        for (row in rows) {
+            row.addCell(this)
         }
     }
 
     override fun toString(): String {
-        return block.position.toString()
+        return value.toString()
     }
 }
