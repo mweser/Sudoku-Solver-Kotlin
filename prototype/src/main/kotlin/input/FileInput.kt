@@ -7,12 +7,18 @@ object FileInput {
     const val inputFilePath =
             "/Users/matthewweser/code/kotlin/SudokuSolverKotlin/prototype/src/main/resources/input/"
 
-    fun readFile() {
-        val fileName = "${inputFilePath}easy01.txt"
-        val content = File(fileName).readText()
-        println(content)
+
+    fun importIntArrayList(): ArrayList<Int> {
+        var intArrayList = ArrayList<Int>()
+        intArrayList.addAll(readFile().split(" ", "\n", " \n", ",").map { it.toInt() })
+        return intArrayList
     }
 
-    
+    private fun readFile(): String {
+        val fileName = "${inputFilePath}easy01.txt"
+        return File(fileName).readText()
+    }
+
+
 
 }

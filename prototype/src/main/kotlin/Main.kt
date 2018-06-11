@@ -1,9 +1,9 @@
 import input.FileInput
+import solver.Solver
 
 fun main(args: Array<String>) {
 
-//    Solver.run()
+    Solver.run()
 
-    FileInput.readFile()
-
+    println(FileInput.importIntArrayList())
 }

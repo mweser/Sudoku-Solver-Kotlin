@@ -14,6 +14,11 @@ class Table {
                 columns[CellMap.toColumn(i)])
     }
 
+    fun parseInputStringToTable(input: String) {
+
+
+    }
+
     override fun toString(): String {
         var tableOut = ""
         for (i in 0 until rows.size) {
