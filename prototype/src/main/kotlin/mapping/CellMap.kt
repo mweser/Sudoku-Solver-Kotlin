@@ -10,7 +10,7 @@ object CellMap {
         return BlockMap.fromBlockRowColumn(toBlockRow(cellIndex), toBlockColumn(cellIndex))
     }
 
-    fun toBlockPosition(cellIndex: Int): BlockPositions {
+    fun toBlockPosition(cellIndex: Int): GridPosition {
         return BlockMap.toBlockPosition(toBlockIndex(cellIndex))
     }
 

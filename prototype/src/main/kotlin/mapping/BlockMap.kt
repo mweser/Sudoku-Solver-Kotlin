@@ -5,8 +5,8 @@ object BlockMap {
         return blockRow * 3 + blockColumn
     }
 
-    fun toBlockPosition(blockIndex: Int): BlockPositions {
-        return BlockPositions.values()[blockIndex]
+    fun toBlockPosition(blockIndex: Int): GridPosition {
+        return GridPosition.values()[blockIndex]
     }
 
     fun toBlockRow(blockIndex: Int): Int {
@@ -16,20 +16,28 @@ object BlockMap {
     fun toBlockColumn(blockIndex: Int): Int {
         return blockIndex % 3
     }
-
+    
     fun toMinRow(blockIndex: Int): Int {
-        return toBlockRow(blockIndex) * 3
-    }
-
-    fun toMaxRow(blockIndex: Int): Int {
-        return toMinRow(blockIndex) + 2
+        return toMin(toBlockRow(blockIndex))
     }
 
     fun toMinColumn(blockIndex: Int): Int {
-        return toBlockColumn(blockIndex) * 3
+        return toMin(toBlockColumn(blockIndex))
+    }
+
+    fun toMaxRow(blockIndex: Int): Int {
+        return toMax(toMinRow(blockIndex))
     }
 
     fun toMaxColumn(blockIndex: Int): Int {
-        return toMinColumn(blockIndex) + 2
+        return toMax(toMinColumn(blockIndex))
+    }
+
+    private fun toMax(value: Int): Int {
+        return value + 2
+    }
+
+    private fun toMin(value: Int): Int {
+        return value * 3
     }
 }

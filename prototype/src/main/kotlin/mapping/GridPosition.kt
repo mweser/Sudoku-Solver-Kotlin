@@ -1,6 +1,6 @@
 package mapping
 
-enum class BlockPositions {
+enum class GridPosition {
     TOP_LEFT,
     TOP_CENTER,
     TOP_RIGHT,
