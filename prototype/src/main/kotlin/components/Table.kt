@@ -1,8 +1,9 @@
 package components
 
+import input.FileInput
 import mapping.CellMap
 
-class Table {
+object Table {
     var blocks = Array(9) { i -> Block(i) }
     var rows = Array(9) { i -> Row(i) }
     var columns = Array(9) { i -> Column(i) }
@@ -14,8 +15,16 @@ class Table {
                 columns[CellMap.toColumn(i)])
     }
 
-    fun parseInputStringToTable(input: String) {
+    fun populateCellsWithValues() {
+        var inputArray = FileInput.importIntArrayList()
 
+        if (inputArray.size != cells.size) {
+            throw Exception("Invalid input array size: ${inputArray.size}")
+        }
+
+        for (i in 0 until cells.size) {
+            cells[i].value = CellValue.values()[inputArray[i]]
+        }
 
     }
 

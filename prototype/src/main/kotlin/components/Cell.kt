@@ -15,6 +15,11 @@ class Cell(val index: Int,
     var isOriginal: Boolean = false
     var originalValue: CellValue = CellValue.EMPTY
 
+    fun addValue(intValue: Int) {
+        value = CellValue.values()[intValue]
+        originalValue = value
+    }
+
     private fun <T: Row> addCellToSets(vararg rows: T) {
         for (row in rows) {
             row.addCell(this)

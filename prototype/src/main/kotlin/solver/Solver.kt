@@ -4,11 +4,12 @@ import Config
 import components.Table
 
 object Solver {
-    val table = Table()
 
     fun run() {
+        Table.populateCellsWithValues()
+
         if (Config.DISPLAY_TABLE) {
-            println(table)
+            println(Table.toString())
         }
     }
 }
