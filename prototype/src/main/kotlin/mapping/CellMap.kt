@@ -15,11 +15,12 @@ object CellMap {
     }
 
     fun toBlockRow(cellIndex: Int): Int {
-         return toRow(cellIndex) % 3
+        return toRow(cellIndex) / 3
+
     }
 
     fun toBlockColumn(cellIndex: Int): Int {
-        return toColumn(cellIndex) % 3
+        return toColumn(cellIndex) / 3
     }
 
     fun toRow(cellIndex: Int): Int {
