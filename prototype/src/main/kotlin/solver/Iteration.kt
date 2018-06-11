@@ -7,10 +7,10 @@ import components.Table
  */
 class Iteration() {
 
-    fun run() {
+    fun complete(): Boolean {
         // eliminate values across blocks, rows, and columns
         Table.eliminate()
 
-
+        return false
     }
 }

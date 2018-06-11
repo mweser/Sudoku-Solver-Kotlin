@@ -4,6 +4,16 @@ open class Row(val index: Int) {
     var cells = ArrayList<Cell>()
     var size = 0
 
+    fun eliminate(value: CellValue): Int {
+        var numRemoved = 0
+
+        for (cell in cells) {
+
+        }
+
+        return numRemoved
+    }
+
     fun addCell(cell: Cell): Boolean {
         return if (size > 9) {
             false

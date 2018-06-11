@@ -2,7 +2,9 @@ package solver
 
 import components.CellValue
 
-class PossibilitySet(val cellValue: CellValue = CellValue.EMPTY) {
+class PossibleValueSet(val cellValue: CellValue = CellValue.EMPTY) {
+
+    init { populateWithAllExceptCellValue() }
 
     var array = ArrayList<CellValue>()
     var prevArray = ArrayList<CellValue>()

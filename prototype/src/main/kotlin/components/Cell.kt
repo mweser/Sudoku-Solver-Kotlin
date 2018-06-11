@@ -2,6 +2,7 @@ package components
 
 import components.CellValue.EMPTY
 import components.CellValue.values
+import solver.PossibleValueSet
 
 enum class CellValue {
     EMPTY, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE
@@ -15,6 +16,7 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
         }
 
     var prevValue: CellValue = EMPTY
+    lateinit var possibleValueSet: PossibleValueSet
 
     init { addCellToSets(block, row, column) }
 
@@ -27,6 +29,7 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
 
     fun initializeCellValue(intValue: Int) {
         value = values()[intValue]
+        possibleValueSet = PossibleValueSet(value)
 
         if (intValue in 1..9) {
             isMutable = false

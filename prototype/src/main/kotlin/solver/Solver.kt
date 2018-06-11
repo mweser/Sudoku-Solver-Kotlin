@@ -12,8 +12,8 @@ object Solver {
         val maxIterations = 50
         var isDone = false
 
-        while (counter < 50 && !isDone) {
-            Iteration().run()
+        while (counter < 50 && !Iteration().complete()) {
+            counter++
         }
 
         if (Config.DISPLAY_TABLE) {
