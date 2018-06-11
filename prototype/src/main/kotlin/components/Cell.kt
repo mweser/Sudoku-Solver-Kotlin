@@ -7,12 +7,13 @@ enum class CellValue {
     EMPTY, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE
 }
 
-class Cell(val index: Int,
-           val block: Block,
-           val row: Row,
-           val column: Column) {
+class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
 
     var isMutable: Boolean = true
+        set(value) {
+            field = isMutable
+        }
+
     var prevValue: CellValue = EMPTY
 
     init { addCellToSets(block, row, column) }
@@ -23,7 +24,6 @@ class Cell(val index: Int,
                 field = value
             }
         }
-
 
     fun initializeCellValue(intValue: Int) {
         value = values()[intValue]

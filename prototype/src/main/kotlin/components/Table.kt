@@ -9,10 +9,18 @@ object Table {
     var columns = Array(9) { i -> Column(i) }
 
     var cells = Array(81)
-    { i -> Cell(i,
+    { i ->
+        Cell(i,
                 blocks[CellMap.toBlockIndex(i)],
                 rows[CellMap.toRow(i)],
                 columns[CellMap.toColumn(i)])
+    }
+
+    fun eliminate() {
+        for (cell in cells) {
+
+        }
+
     }
 
     fun populateCellsWithValues() {
@@ -25,14 +33,12 @@ object Table {
         for (i in 0 until cells.size) {
             cells[i].initializeCellValue(inputArray[i])
         }
-
     }
 
     override fun toString(): String {
         var tableOut = ""
         for (i in 0 until rows.size) {
-            tableOut += "${rows[i]}\n"
-            tableOut += addHorizontalLineEveryThirdRow(i)
+            tableOut += "${rows[i]}\n${addHorizontalLineEveryThirdRow(i)}"
         }
         return tableOut
     }
