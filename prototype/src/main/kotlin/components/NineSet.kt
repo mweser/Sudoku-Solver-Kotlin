@@ -61,7 +61,7 @@ class Row(index: Int) : NineSet(index)
 class Column(index: Int) : NineSet(index)
 
 class Block(index: Int) : NineSet(index) {
-    val position = BlockMap.toBlockName(index)
+    val position = BlockMap.toBlockPosition(index)
 
     val blockRow = BlockMap.toBlockRow(index)
     val blockColumn = BlockMap.toBlockColumn(index)

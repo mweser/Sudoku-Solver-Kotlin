@@ -28,7 +28,7 @@ class BlockMapTest {
     }
 
     @Test
-    fun toBlockName() {
+    fun toBlockPosition() {
     }
 
     @Test

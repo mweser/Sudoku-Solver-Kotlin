@@ -33,7 +33,7 @@ class CellMapTest {
     }
 
     @Test
-    fun toBlockName() {
+    fun toBlockPosition() {
     }
 
     @Test

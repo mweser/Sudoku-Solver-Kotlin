@@ -5,7 +5,7 @@ object BlockMap {
         return blockRow * 3 + blockColumn
     }
 
-    fun toBlockName(blockIndex: Int): BlockPositions {
+    fun toBlockPosition(blockIndex: Int): BlockPositions {
         return BlockPositions.values()[blockIndex]
     }
 

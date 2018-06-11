@@ -10,8 +10,8 @@ object CellMap {
         return BlockMap.fromBlockRowColumn(toBlockRow(cellIndex), toBlockColumn(cellIndex))
     }
 
-    fun toBlockName(cellIndex: Int): BlockPositions {
-        return BlockMap.toBlockName(toBlockIndex(cellIndex))
+    fun toBlockPosition(cellIndex: Int): BlockPositions {
+        return BlockMap.toBlockPosition(toBlockIndex(cellIndex))
     }
 
     fun toBlockRow(cellIndex: Int): Int {
