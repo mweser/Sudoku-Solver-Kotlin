@@ -22,7 +22,7 @@ class CellMapTest {
     fun toBlockIndex() {
         val expectedArray: ArrayList<Int> =
                         // [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80]
-                arrayListOf(0, 1,  1,  2,  1,  2,  4,  5,  4,  3,  4,  6,  8,  6,  8,  7,  8)
+                arrayListOf(0, 1,  0,  2,  0,  2,  4,  5,  4,  3,  4,  6,  8,  6,  8,  7,  8)
 
         var results = ArrayList<Int>()
 
