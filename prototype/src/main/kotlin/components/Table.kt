@@ -4,23 +4,27 @@ import input.FileInput
 import mapping.CellMap
 
 object Table {
-    var blocks = Array(9) { i -> Block(i) }
-    var rows = Array(9) { i -> Row(i) }
-    var columns = Array(9) { i -> Column(i) }
+    private var blocks = Array(9) { i -> Block(i) }
+    private var rows = Array(9) { i -> Row(i) }
+    private var columns = Array(9) { i -> Column(i) }
 
-    var cells = Array(81)
-    { i ->
-        Cell(i,
+    private var cells = Array(81)
+    { i -> Cell(i,
                 blocks[CellMap.toBlockIndex(i)],
                 rows[CellMap.toRow(i)],
                 columns[CellMap.toColumn(i)])
     }
 
     fun eliminate() {
-        for (cell in cells) {
+        eliminateFromRowType(rows)
+        eliminateFromRowType(columns)
+        eliminateFromRowType(blocks)
+    }
 
+    private fun <T: Row> eliminateFromRowType(rowTypeArray: Array<T>) {
+        for (row in rowTypeArray) {
+            row.eliminate()
         }
-
     }
 
     fun populateCellsWithValues() {

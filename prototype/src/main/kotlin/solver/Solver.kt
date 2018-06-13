@@ -13,12 +13,14 @@ object Solver {
         val maxIterations = 50
         var isDone = false
 
-        while (counter < 50 && !Iteration().complete()) {
+        while (counter < 10 && !Iteration().complete()) {
+            if (Config.DISPLAY_TABLE) {
+                println("Round #${counter + 1}")
+                println(Table.toString())
+                println()
+            }
             counter++
         }
 
-        if (Config.DISPLAY_TABLE) {
-            println(Table.toString())
-        }
     }
 }

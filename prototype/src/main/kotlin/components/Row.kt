@@ -1,20 +1,20 @@
 package components
 
 import solver.Candidates
+import util.Logger
 
 open class Row(val index: Int) {
     var cells = ArrayList<Cell>()
     var size = 0
     var candidates = Candidates()
 
-    fun eliminate(value: CellValue): Int {
-        var numRemoved = 0
+    fun eliminate() {
+        val values = Array(9) { i -> cells[i].value }
+        Logger.rowValues(this, values)
 
         for (cell in cells) {
-
+            cell.eliminate(values)
         }
-
-        return numRemoved
     }
 
     fun addCell(cell: Cell): Boolean {
@@ -29,7 +29,7 @@ open class Row(val index: Int) {
     }
 
     fun isDone(): Boolean {
-        for (cell in cells) if (cell.value == CellValue.EMPTY) {
+        for (cell in cells) if (cell.value == CellValue.NONE) {
             return false
         }
         return true
@@ -64,7 +64,7 @@ open class Row(val index: Int) {
 
     private fun filter(value: Int): String {
         return when {
-            value == CellValue.EMPTY.ordinal -> "__"
+            value == CellValue.NONE.ordinal -> "__"
             value < 10 -> " $value"
             else -> value.toString()
         }

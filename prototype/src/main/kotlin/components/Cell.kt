@@ -1,11 +1,12 @@
 package components
 
-import components.CellValue.EMPTY
+import components.CellValue.NONE
 import components.CellValue.values
 import solver.Candidates
+import util.Logger.cellValueUpdated
 
 enum class CellValue {
-    EMPTY, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE
+    NONE, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE
 }
 
 class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
@@ -15,19 +16,35 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
             field = isMutable
         }
 
-    var value: CellValue = EMPTY
+    var value: CellValue = NONE
         set(value) {
             if (isMutable) {
                 field = value
+                cellValueUpdated(this)
+                candidates.clearAllCandidates()
             }
         }
 
-    var prevValue: CellValue = EMPTY
+    var prevValue: CellValue = NONE
     var candidates = Candidates()
+    var numCandidates = 9
 
     init { addCellToSets(block, row, column) }
 
+    fun <T: Row> eliminateFromComponents(vararg rowTypes: T) {
+        for (rowType in rowTypes) {
+            rowType.eliminate()
+        }
+    }
 
+    fun eliminate(valuesToEliminate: Array<CellValue>) {
+        candidates.eliminateValues(*valuesToEliminate)
+        numCandidates = candidates.count
+
+        if (candidates.getRemainingCandidate() != NONE) {
+            value = candidates.getRemainingCandidate()
+        }
+    }
 
     fun initializeCellValue(intValue: Int) {
         value = values()[intValue]

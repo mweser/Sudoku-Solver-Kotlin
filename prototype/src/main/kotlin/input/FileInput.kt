@@ -18,7 +18,4 @@ object FileInput {
         val fileName = "${inputFilePath}easy01.txt"
         return File(fileName).readText()
     }
-
-
-
 }
