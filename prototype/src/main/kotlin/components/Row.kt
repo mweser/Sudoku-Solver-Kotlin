@@ -61,7 +61,7 @@ open class Row(val index: Int) {
 
     private fun filter(value: Int): String {
         return when {
-            value == 0 -> "__"
+            value == CellValue.EMPTY.ordinal -> "__"
             value < 10 -> " $value"
             else -> value.toString()
         }
