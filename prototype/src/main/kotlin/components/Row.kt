@@ -63,8 +63,21 @@ open class Row(val index: Int) {
     }
 
     private fun filter(value: Int): String {
+
+        if (value == CellValue.NONE.ordinal) {
+            return "__"
+        }
+
+        if (value in CellValue.ONE.ordinal..CellValue.NINE.ordinal) {
+
+        }
+
+
         return when {
-            value == CellValue.NONE.ordinal -> "__"
+
+            if (value in CellValue.ONE.ordinal..CellValue.NINE.ordinal) {
+
+            }
             value < 10 -> " $value"
             else -> value.toString()
         }

@@ -13,7 +13,7 @@ object Solver {
         val maxIterations = 50
         var isDone = false
 
-        while (counter < 10 && !Iteration().complete()) {
+        while (counter < 1 && !Iteration().complete()) {
             if (Config.DISPLAY_TABLE) {
                 println("Round #${counter + 1}")
                 println(Table.toString())

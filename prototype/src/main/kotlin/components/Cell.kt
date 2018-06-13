@@ -22,6 +22,7 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
                 field = value
                 cellValueUpdated(this)
                 candidates.clearAllCandidates()
+                isMutable = false
             }
         }
 
