@@ -1,8 +1,11 @@
 package components
 
+import solver.Candidates
+
 open class Row(val index: Int) {
     var cells = ArrayList<Cell>()
     var size = 0
+    var candidates = Candidates()
 
     fun eliminate(value: CellValue): Int {
         var numRemoved = 0
@@ -19,7 +22,7 @@ open class Row(val index: Int) {
             false
         } else {
             cells.add(cell)
-            // call elimination
+            candidates.eliminateValues(cell.value)
             size++
             true
         }

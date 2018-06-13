@@ -1,6 +1,6 @@
 package solver
 
-import Config
+import util.Config
 import components.Table
 
 object Solver {

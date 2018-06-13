@@ -2,7 +2,7 @@ package components
 
 import components.CellValue.EMPTY
 import components.CellValue.values
-import solver.CandidateSet
+import solver.Candidates
 
 enum class CellValue {
     ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, EMPTY
@@ -16,7 +16,7 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
         }
 
     var prevValue: CellValue = EMPTY
-    lateinit var candidateSet: CandidateSet
+    lateinit var candidates: Candidates
 
     init { addCellToSets(block, row, column) }
 
@@ -29,7 +29,7 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
 
     fun initializeCellValue(intValue: Int) {
         value = values()[intValue]
-        candidateSet = CandidateSet()
+        candidates = Candidates(value)
 
         if (intValue in 1..9) {
             isMutable = false
