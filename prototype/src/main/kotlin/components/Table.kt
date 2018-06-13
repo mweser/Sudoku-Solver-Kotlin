@@ -16,12 +16,12 @@ object Table {
     }
 
     fun eliminate() {
-        eliminateFromRowType(rows)
-        eliminateFromRowType(columns)
-        eliminateFromRowType(blocks)
+        eliminateFromTable(rows)
+        eliminateFromTable(columns)
+        eliminateFromTable(blocks)
     }
 
-    private fun <T: Row> eliminateFromRowType(rowTypeArray: Array<T>) {
+    private fun <T: Row> eliminateFromTable(rowTypeArray: Array<T>) {
         for (row in rowTypeArray) {
             row.eliminate()
         }

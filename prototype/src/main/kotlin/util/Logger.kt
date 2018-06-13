@@ -6,9 +6,8 @@ import components.Row
 
 object Logger {
 
-    fun cellValueInitialized(intValue: Int) {
-        println("Cell initialized at ")
-
+    fun cellValueInitialized(cell: Cell) {
+        println("Cell initialized ${getCellId(cell)}")
     }
 
     fun valueEliminated(value: CellValue, count: Int) {
@@ -16,10 +15,18 @@ object Logger {
     }
 
     fun cellValueUpdated(cell: Cell) {
-//        println("Cell {${cell.index + 1} [${cell.row.index + 1},${cell.column.index + 1}]} updated to ${cell.value}")
+        println("Cell value updated ${getCellId(cell)}")
     }
 
     fun <T: Row> rowValues(row: T, values: Array<CellValue>) {
 //        println("Values in Row ${row.index + 1}: $values")
+    }
+
+    fun cellSetToImmutable(cell: Cell) {
+        println("Cell set to immutable: ${getCellId(cell)}")
+    }
+
+    private fun getCellId(cell: Cell): String {
+        return "{${cell.index + 1}: ${cell.value}    [${cell.row.index + 1},${cell.column.index + 1}] Mutable: ${cell.isMutable}}"
     }
 }

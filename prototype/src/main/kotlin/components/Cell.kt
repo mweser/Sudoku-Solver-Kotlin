@@ -3,6 +3,7 @@ package components
 import components.CellValue.NONE
 import components.CellValue.values
 import solver.Candidates
+import util.Logger
 import util.Logger.cellValueUpdated
 
 enum class CellValue {
@@ -13,7 +14,13 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
 
     var isMutable: Boolean = true
         set(value) {
-            field = isMutable
+            if (isMutable) {
+                field = value
+            }
+
+            if (!isMutable) {
+                Logger.cellSetToImmutable(this)
+            }
         }
 
     var value: CellValue = NONE
@@ -51,7 +58,7 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
         value = values()[intValue]
         candidates = Candidates(value)
 
-        if (intValue in 1..9) {
+        if (intValue in CellValue.ONE.ordinal..CellValue.NINE.ordinal) {
             isMutable = false
         }
     }

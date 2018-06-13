@@ -42,44 +42,22 @@ open class Row(val index: Int) {
     private fun printCellValues(): String {
         var values = ""
         for (i in 0 until cells.size) {
-            values += "${filter(cells[i].value.ordinal)} "
-
-            if (i % 3 == 2 && i < cells.size - 1) {
-                values += "| "
-            }
+            values += "${checkForNoValue(cells[i].value.ordinal)}${addDividerEveryThirdColumn(i)}"
         }
         return values
     }
 
-    private fun filter(value: Boolean): String {
-        return when {
-            value -> "T"
-            else -> "F"
+    private fun checkForNoValue(value: Int): String {
+        return when (value) {
+            CellValue.NONE.ordinal -> " _"
+            else -> " $value"
         }
     }
 
-    private fun filter(value: String): String {
-        return value
-    }
-
-    private fun filter(value: Int): String {
-
-        if (value == CellValue.NONE.ordinal) {
-            return "__"
-        }
-
-        if (value in CellValue.ONE.ordinal..CellValue.NINE.ordinal) {
-
-        }
-
-
+    private fun addDividerEveryThirdColumn(columnIndex: Int): String {
         return when {
-
-            if (value in CellValue.ONE.ordinal..CellValue.NINE.ordinal) {
-
-            }
-            value < 10 -> " $value"
-            else -> value.toString()
+            columnIndex % 3 == 2 && columnIndex < cells.size - 1 -> "| "
+            else -> ""
         }
     }
 }
