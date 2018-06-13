@@ -5,7 +5,7 @@ import components.CellValue.values
 import solver.Candidates
 
 enum class CellValue {
-    ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, EMPTY
+    EMPTY, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE
 }
 
 class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
@@ -15,17 +15,19 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
             field = isMutable
         }
 
-    var prevValue: CellValue = EMPTY
-    lateinit var candidates: Candidates
-
-    init { addCellToSets(block, row, column) }
-
     var value: CellValue = EMPTY
         set(value) {
             if (isMutable) {
                 field = value
             }
         }
+
+    var prevValue: CellValue = EMPTY
+    var candidates = Candidates()
+
+    init { addCellToSets(block, row, column) }
+
+
 
     fun initializeCellValue(intValue: Int) {
         value = values()[intValue]
@@ -38,7 +40,7 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
 
     private fun <T: Row> addCellToSets(vararg rows: T) {
         for (row in rows) {
-            row.addCell(this)
+            row.addCell(this@Cell)
         }
     }
 

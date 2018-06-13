@@ -1,5 +1,7 @@
 package util
 
+import components.CellValue
+
 object Logger {
 
     fun cellValueInitialized(intValue: Int) {
@@ -7,4 +9,7 @@ object Logger {
 
     }
 
+    fun valueEliminated(value: CellValue, count: Int) {
+//        println("$value eliminated, count at $count")
+    }
 }

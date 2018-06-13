@@ -1,12 +1,13 @@
 package solver
 
-import util.Config
 import components.Table
+import util.Config
 
 object Solver {
 
     fun run() {
         Table.populateCellsWithValues()
+        println(Table.toString())
 
         var counter = 0
         val maxIterations = 50
