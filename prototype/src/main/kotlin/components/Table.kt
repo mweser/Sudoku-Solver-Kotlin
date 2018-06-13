@@ -15,17 +15,23 @@ object Table {
                 columns[CellMap.toColumn(i)])
     }
 
-    fun eliminate() {
-        eliminateFromTable(rows)
-        eliminateFromTable(columns)
-        eliminateFromTable(blocks)
+    fun eliminate(): Boolean {
+        for (cell in cells) {
+            cell.eliminate()
+//            println("Cell: ${cell.index} Value: ${cell.value.ordinal} Num candidates: ${cell.numCandidates}")
+        }
+
+        return spacesRemaining == 81
     }
 
-    private fun <T: Row> eliminateFromTable(rowTypeArray: Array<T>) {
-        for (row in rowTypeArray) {
-            row.eliminate()
+    var spacesRemaining = 81
+        get() {
+            var i = 0
+            for (cell in cells) if (cell.value != CellValue.NONE) {
+                i++
+            }
+            return i
         }
-    }
 
     fun populateCellsWithValues() {
         var inputArray = FileInput.importIntArrayList()

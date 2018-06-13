@@ -1,7 +1,6 @@
 package components
 
-import components.CellValue.NONE
-import components.CellValue.values
+import components.CellValue.*
 import solver.Candidates
 import util.Logger
 import util.Logger.cellValueUpdated
@@ -25,10 +24,11 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
 
     var value: CellValue = NONE
         set(value) {
-            if (isMutable) {
+            if (isMutable && value != NONE) {
                 field = value
                 cellValueUpdated(this)
                 candidates.clearAllCandidates()
+                numCandidates = 0
                 isMutable = false
             }
         }
@@ -39,17 +39,24 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
 
     init { addCellToSets(block, row, column) }
 
-    fun <T: Row> eliminateFromComponents(vararg rowTypes: T) {
-        for (rowType in rowTypes) {
-            rowType.eliminate()
+    fun eliminate() {
+        if (isMutable) {
+            var values = ArrayList<CellValue>()
+            values.addAll(row.values)
+            values.addAll(column.values)
+            values.addAll(block.values)
+
+            for (i in ONE.ordinal..NINE.ordinal) if (values.contains(CellValue.values()[i])) {
+                eliminate(CellValue.values()[i])
+            }
         }
     }
 
-    fun eliminate(valuesToEliminate: Array<CellValue>) {
-        candidates.eliminateValues(*valuesToEliminate)
+    fun eliminate(valueToEliminate: CellValue) {
+        candidates.eliminateValue(valueToEliminate)
         numCandidates = candidates.count
 
-        if (candidates.getRemainingCandidate() != NONE) {
+        if (numCandidates == 1) {
             value = candidates.getRemainingCandidate()
         }
     }
@@ -58,7 +65,7 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
         value = values()[intValue]
         candidates = Candidates(value)
 
-        if (intValue in CellValue.ONE.ordinal..CellValue.NINE.ordinal) {
+        if (intValue in ONE.ordinal..NINE.ordinal) {
             isMutable = false
         }
     }

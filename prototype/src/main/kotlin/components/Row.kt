@@ -1,28 +1,20 @@
 package components
 
 import solver.Candidates
-import util.Logger
 
 open class Row(val index: Int) {
     var cells = ArrayList<Cell>()
     var size = 0
     var candidates = Candidates()
-
-    fun eliminate() {
-        val values = Array(9) { i -> cells[i].value }
-        Logger.rowValues(this, values)
-
-        for (cell in cells) {
-            cell.eliminate(values)
-        }
-    }
+    var values = Array(9) { CellValue.NONE }
+            get() = Array(9) { i -> cells[i].value }
 
     fun addCell(cell: Cell): Boolean {
         return if (size > 9) {
             false
         } else {
             cells.add(cell)
-            candidates.eliminateValues(cell.value)
+            candidates.eliminateValue(cell.value)
             size++
             true
         }

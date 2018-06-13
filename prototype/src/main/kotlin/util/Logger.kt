@@ -15,7 +15,7 @@ object Logger {
     }
 
     fun cellValueUpdated(cell: Cell) {
-        println("Cell value updated ${getCellId(cell)}")
+//        println("Cell value updated ${getCellId(cell)}")
     }
 
     fun <T: Row> rowValues(row: T, values: Array<CellValue>) {
@@ -23,7 +23,7 @@ object Logger {
     }
 
     fun cellSetToImmutable(cell: Cell) {
-        println("Cell set to immutable: ${getCellId(cell)}")
+//        println("Cell set to immutable: ${getCellId(cell)}")
     }
 
     private fun getCellId(cell: Cell): String {

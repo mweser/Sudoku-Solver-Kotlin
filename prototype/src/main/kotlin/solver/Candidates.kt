@@ -1,6 +1,5 @@
 package solver
 
-import components.Cell
 import components.CellValue
 import util.Logger.valueEliminated
 
@@ -10,19 +9,12 @@ class Candidates(vararg valuesToEliminate: CellValue) {
 
     init {
         candidates[CellValue.NONE.ordinal] = false
-        eliminateValues(*valuesToEliminate)
+        eliminateValue(CellValue.NONE)
     }
 
-    fun eliminateValues(cells: ArrayList<Cell>): Boolean {
-        for (cell in cells) {
-            eliminateValues(cell.value)
-        }
-        return count <= 1
-    }
-
-    fun eliminateValues(vararg values: CellValue): Boolean {
+    fun eliminateValue(value: CellValue): Boolean {
         if (count > 1) {
-            for (value in values) if (isValueInRange(value)) {
+            if (isValueInRange(value)) {
                     candidates[value.ordinal] = false
                     count--
                     valueEliminated(value, count)
