@@ -15,9 +15,9 @@ class Candidates(vararg valuesToEliminate: CellValue) {
     fun eliminateValue(value: CellValue): Boolean {
         if (count > 1) {
             if (isValueInRange(value)) {
-                    candidates[value.ordinal] = false
-                    count--
-                    valueEliminated(value, count)
+                candidates[value.ordinal] = false
+                count--
+                valueEliminated(value, count)
             }
         }
         return count <= 1

@@ -59,4 +59,10 @@ object Table {
             else -> ""
         }
     }
+
+    fun evaluateSolution(): String {
+
+
+        return "0"
+    }
 }

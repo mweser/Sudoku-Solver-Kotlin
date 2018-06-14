@@ -24,5 +24,9 @@ object Solver {
             counter++
         }
 
+        println("Puzzle complete. Correctness: ${Table.evaluateSolution()}%")
+
+
+
     }
 }
