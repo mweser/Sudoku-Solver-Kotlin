@@ -1,7 +1,9 @@
 package components
 
 import mapping.BlockMap
+import util.Mockable
 
+@Mockable
 class Block(index: Int): Row(index) {
     val position = BlockMap.toBlockPosition(index)
 

@@ -1,6 +1,7 @@
 package components
 
 import solver.Candidates
+import util.Mockable
 
 open class Row(val index: Int) {
     var cells = ArrayList<Cell>()
@@ -54,4 +55,5 @@ open class Row(val index: Int) {
     }
 }
 
+@Mockable
 class Column(index: Int): Row(index)
