@@ -16,7 +16,7 @@ repositories {
     jcenter()
 }
 
-mainClassName = 'Main.kt'
+mainClassName = 'MainKt'
 
 defaultTasks 'run'
 
