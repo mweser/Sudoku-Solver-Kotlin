@@ -48,7 +48,9 @@ dependencies {
     compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.1'
     testCompile group: 'org.mockito', name: 'mockito-all', version: '1.9.5'
 
+    testCompile "com.nhaarman:mockito-kotlin:1.5.0"
 }
+
 
 task wrapper(type: Wrapper) {
     gradleVersion = "4.1"
