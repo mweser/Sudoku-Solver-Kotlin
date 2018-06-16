@@ -3,6 +3,7 @@ package components
 import solver.Candidates
 import util.Mockable
 
+@Mockable
 open class Row(val index: Int) {
     var cells = ArrayList<Cell>()
     var size = 0
