@@ -39,7 +39,7 @@ class BlockMapTest {
             results.add(BlockMap.toBlockRow(index))
         }
 
-        assert(results == expectedArray, {"\nInput:    $indices\nExpected: $expectedArray\nResult:   $results"})
+        assert(results == expectedArray) {"\nInput:    $indices\nExpected: $expectedArray\nResult:   $results"}
     }
 
     @Test

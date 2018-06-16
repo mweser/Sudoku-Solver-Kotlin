@@ -56,4 +56,14 @@ class Candidates(vararg valuesToEliminate: CellValue) {
     private fun isValueInRange(value: CellValue): Boolean {
         return value.ordinal in CellValue.ONE.ordinal..CellValue.NINE.ordinal
     }
+
+    override fun toString(): String {
+        var stringToPrint = ""
+        for (i in CellValue.ONE.ordinal..CellValue.NINE.ordinal) {
+            if (candidates[i]) {
+                stringToPrint += "${CellValue.values()[i]} "
+            }
+        }
+        return stringToPrint
+    }
 }

@@ -62,6 +62,18 @@ class CellTest {
                 cell.candidates.assertTrueCandidates(FIVE, NINE, ONE, TWO, THREE, FOUR, SIX, SEVEN, EIGHT))
     }
 
+    @Test
+    fun testEliminateAllValuesTaken() {
+        whenever(row.values).thenReturn(populateMockWithValues(0, 1, 2, 3, 4, 0, 0, 7, 0))
+        whenever(column.values).thenReturn(populateMockWithValues(0, 0, 2, 0, 4, 0, 6, 0, 8))
+        whenever(block.values).thenReturn(populateMockWithValues(9, 0, 2, 0, 4, 5, 0, 9, 0))
+
+        cell.eliminate()
+
+        assert(cell.numCandidates == 0 &&
+                cell.value == NONE) { "Cell value is ${cell.value}" }
+    }
+
     private fun populateMockWithValues(vararg intValues: Int): Array<CellValue> {
         var valueArray = Array(9) { NONE }
 

@@ -46,8 +46,16 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
             values.addAll(column.values)
             values.addAll(block.values)
 
-            for (i in ONE.ordinal..NINE.ordinal) if (values.contains(CellValue.values()[i])) {
-                eliminate(CellValue.values()[i])
+            for (i in ONE.ordinal..NINE.ordinal) {
+                if (values.containsAll(CellValue.values().toList())) {
+                    throw Exception ("All values taken: cannot assign value to cell\n" +
+                            "${propertiesToPrint()}")
+                }
+
+                if (values.contains(CellValue.values()[i]) &&
+                        candidates.candidates[i]) {
+                    eliminate(CellValue.values()[i])
+                }
             }
         }
     }
@@ -74,6 +82,17 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
         for (row in rows) {
             row.addCell(this@Cell)
         }
+    }
+
+    private fun propertiesToPrint(): String {
+        return """
+            Cell #${index + 1}  (${row.index + 1}, ${column.index + 1})
+            Value: $value
+            Mutable: $isMutable
+            Candidates: $candidates
+            Block #${block.index}: ${block.position}
+        """.trimIndent()
+
     }
 
     override fun toString(): String {
