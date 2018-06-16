@@ -5,6 +5,7 @@ import components.CellValue.*
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.mock
+import kotlin.math.min
 
 class CellTest {
 
@@ -49,10 +50,24 @@ class CellTest {
                 cell.candidates.assertTrueCandidates(FIVE, NINE))
     }
 
+    @Test
+    fun testEliminateNineCandidatesRemaining() {
+        whenever(row.values).thenReturn(populateMockWithValues(0))
+        whenever(column.values).thenReturn(populateMockWithValues(0))
+        whenever(block.values).thenReturn(populateMockWithValues(0))
+
+        cell.eliminate()
+        assert(cell.numCandidates == 9 &&
+                cell.value == NONE &&
+                cell.candidates.assertTrueCandidates(FIVE, NINE, ONE, TWO, THREE, FOUR, SIX, SEVEN, EIGHT))
+    }
+
     private fun populateMockWithValues(vararg intValues: Int): Array<CellValue> {
         var valueArray = Array(9) { NONE }
 
-        for (i in 0 until valueArray.size) {
+        val maxIndex = min(intValues.size, valueArray.size)
+
+        for (i in 0 until maxIndex) {
             valueArray[i] = CellValue.values()[intValues[i]]
         }
 
