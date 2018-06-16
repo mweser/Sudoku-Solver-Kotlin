@@ -18,7 +18,6 @@ object Table {
     fun eliminate(): Boolean {
         for (cell in cells) {
             cell.eliminate()
-//            println("Cell: ${cell.index} Value: ${cell.value.ordinal} Num candidates: ${cell.numCandidates}")
         }
 
         return spacesRemaining == 81

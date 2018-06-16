@@ -7,6 +7,7 @@ object Solver {
 
     fun run() {
         Table.populateCellsWithValues()
+        println("\n\n")
         println(Table.toString())
 
         var counter = 0
@@ -17,14 +18,14 @@ object Solver {
             isDone = Iteration().complete()
 
             if (Config.DISPLAY_TABLE) {
-                println("Round #${counter + 1}")
+                println("\n\nRound #${counter + 1}")
                 println(Table.toString())
                 println()
             }
             counter++
         }
 
-        println("Puzzle complete. Correctness: ${Table.evaluateSolution()}%")
+        println("Puzzle complete!")
 
 
 

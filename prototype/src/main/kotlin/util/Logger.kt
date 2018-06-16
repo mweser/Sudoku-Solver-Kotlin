@@ -7,7 +7,7 @@ import components.Row
 object Logger {
 
     fun cellValueInitialized(cell: Cell) {
-        println("Cell initialized ${getCellId(cell)}")
+//        println("Cell initialized ${getCellId(cell)}")
     }
 
     fun valueEliminated(value: CellValue, count: Int) {
@@ -15,7 +15,7 @@ object Logger {
     }
 
     fun cellValueUpdated(cell: Cell) {
-//        println("Cell value updated ${getCellId(cell)}")
+        println("set${getCellId(cell)}")
     }
 
     fun <T: Row> rowValues(row: T, values: Array<CellValue>) {
@@ -27,6 +27,6 @@ object Logger {
     }
 
     private fun getCellId(cell: Cell): String {
-        return "{${cell.index + 1}: ${cell.value}    [${cell.row.index + 1},${cell.column.index + 1}] Mutable: ${cell.isMutable}}"
+        return "(${cell.row.index + 1},${cell.column.index + 1}) --> ${cell.value}"
     }
 }
