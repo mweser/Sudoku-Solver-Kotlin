@@ -34,6 +34,21 @@ class Candidates(vararg valuesToEliminate: CellValue) {
         return CellValue.NONE
     }
 
+    fun assertTrueCandidates(vararg cellValues: CellValue): Boolean {
+
+        if (count != cellValues.size) {
+            return false
+        }
+
+        for (cellValue in cellValues) {
+            if (!candidates[cellValue.ordinal]) {
+                return false
+            }
+        }
+        return true
+    }
+
+
     fun clearAllCandidates() {
         candidates = BooleanArray(10) { false }
     }

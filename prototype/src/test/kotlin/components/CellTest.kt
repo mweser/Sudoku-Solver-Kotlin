@@ -1,8 +1,7 @@
 package components
 
 import com.nhaarman.mockito_kotlin.whenever
-import components.CellValue.FIVE
-import components.CellValue.NONE
+import components.CellValue.*
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.mock
@@ -38,26 +37,17 @@ class CellTest {
         assert(cell.numCandidates == 0 && cell.value == FIVE)
     }
 
-//    @Test
-//    fun testEliminateTwoCandidatesRemaining() {
-//
-//        whenever(row.values).thenReturn(populateMockWithValues(0, 1, 2, 3, 4, 0, 0, 7, 0))
-//        whenever(column.values).thenReturn(populateMockWithValues(0, 0, 2, 0, 4, 0, 6, 0, 8))
-//        whenever(block.values).thenReturn(populateMockWithValues(0, 0, 2, 0, 4, 0, 0, 0, 0))
-//
-//        cell.eliminate()
-//        assert(cell.numCandidates == 2 && cell.value == NONE)
-//    }
-//
-//    private fun assertCandidateValues(candidates: Candidates, vararg candidateValues: CellValue): Boolean {
-//
-//        for (candidateValue in candidateValues) {
-//
-//
-//        }
-//
-//
-//    }
+    @Test
+    fun testEliminateTwoCandidatesRemaining() {
+        whenever(row.values).thenReturn(populateMockWithValues(0, 1, 2, 3, 4, 0, 0, 7, 0))
+        whenever(column.values).thenReturn(populateMockWithValues(0, 0, 2, 0, 4, 0, 6, 0, 8))
+        whenever(block.values).thenReturn(populateMockWithValues(0, 0, 2, 0, 4, 0, 0, 0, 0))
+
+        cell.eliminate()
+        assert(cell.numCandidates == 2 &&
+                cell.value == NONE &&
+                cell.candidates.assertTrueCandidates(FIVE, NINE))
+    }
 
     private fun populateMockWithValues(vararg intValues: Int): Array<CellValue> {
         var valueArray = Array(9) { NONE }
