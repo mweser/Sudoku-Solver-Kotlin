@@ -55,12 +55,14 @@ object Table {
 
     private fun addHorizontalLineEveryThirdRow(index: Int): String {
         return when {
-            index % 3 == 2 && index < rows.size - 1 -> "------------------------------\n"
+            index % 3 == 2 && index < rows.size - 1 -> "----------------------\n"
             else -> ""
         }
     }
 
     fun evaluateSolution(): String {
+
+
 
 
         return "0"

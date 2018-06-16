@@ -50,7 +50,7 @@ open class Row(val index: Int) {
 
     private fun addDividerEveryThirdColumn(columnIndex: Int): String {
         return when {
-            columnIndex % 3 == 2 && columnIndex < cells.size - 1 -> "| "
+            columnIndex % 3 == 2 && columnIndex < cells.size - 1 -> " |"
             else -> ""
         }
     }
