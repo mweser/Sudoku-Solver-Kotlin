@@ -1,4 +1,4 @@
-package solver.rules
+package solver
 
 import com.nhaarman.mockito_kotlin.whenever
 import components.Block
@@ -9,7 +9,6 @@ import components.Row
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito
-import solver.Eliminate
 import kotlin.math.min
 
 class EliminateTest {
