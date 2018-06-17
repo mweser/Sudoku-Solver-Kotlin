@@ -72,7 +72,7 @@ class EliminateTest {
         whenever(row.values).thenReturn(populateMockWithValues(0, 1, 2, 3, 4, 0, 0, 7, 0))
         whenever(column.values).thenReturn(populateMockWithValues(0, 0, 2, 0, 4, 0, 6, 0, 8))
         whenever(block.values).thenReturn(populateMockWithValues(9, 0, 2, 0, 4, 5, 0, 9, 0))
-        
+
 //        assertFailsWith(java.lang.Exception, cell.eliminateCandidate())
 
         // todo Assert exception thrown here
