@@ -1,7 +1,5 @@
-
 import components.Table
 import solver.rules.Eliminate
-import solver.rules.SingleHidden
 import solver.rules.SingleNaked
 import util.Config
 
@@ -38,7 +36,7 @@ fun solve(): Boolean {
 
     changes += Eliminate.check()
     changes += SingleNaked.check()
-    changes += SingleHidden.check()
+//    changes += SingleHidden.check()
 
 
     return changes == 0

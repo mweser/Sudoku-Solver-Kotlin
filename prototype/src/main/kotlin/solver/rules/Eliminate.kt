@@ -15,12 +15,11 @@ object Eliminate : RuleCheck() {
             eliminateFromCell(cell)
         }
 
-        // todo Extract to logger class
         println("$this\n\nEliminated: $numEliminated")
         return numEliminated
     }
 
-    private fun eliminateFromCell(cell: Cell) {
+    internal fun eliminateFromCell(cell: Cell) {
         if (cell.isMutable) {
             var values = ArrayList<CellValue>()
             values.addAll(cell.row.values)
