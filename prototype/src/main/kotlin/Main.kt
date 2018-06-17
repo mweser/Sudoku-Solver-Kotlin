@@ -1,5 +1,38 @@
-import solver.Solver
+
+import components.Table
+import util.Config
 
 fun main(args: Array<String>) {
-    Solver.run()
+    run()
+}
+
+fun run() {
+    Table.populateCellsWithValues()
+    println("\n\n")
+    println(Table.toString())
+
+    var counter = 0
+    val maxIterations = 50
+    var isDone = false
+
+    while (counter < 10 && !isDone) {
+        isDone = solve()
+
+        if (Config.DISPLAY_TABLE) {
+            println("\n\nRound #${counter + 1}")
+            println(Table.toString())
+            println()
+        }
+        counter++
+    }
+
+    println("Puzzle solve!")
+}
+
+fun solve(): Boolean {
+
+    Table.eliminate()
+
+
+    return Table.eliminate()
 }
