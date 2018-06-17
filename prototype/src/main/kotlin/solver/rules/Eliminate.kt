@@ -30,7 +30,7 @@ object Eliminate : RuleCheck() {
             for (i in CellValue.ONE.ordinal..CellValue.NINE.ordinal) {
                 if (values.containsAll(CellValue.values().toList())) {
                     throw Exception("All values taken: cannot assign value to cell\n" +
-                            "${cell.propertiesToPrint()}")
+                            "$cell")
                 }
 
                 if (values.contains(CellValue.values()[i]) &&
@@ -44,8 +44,8 @@ object Eliminate : RuleCheck() {
 
     override fun toString(): String {
         var printString = ""
-        for (cell in Table.cells) if (cell.numCandidates > 0) {
-            printString += "Cell ${cell.index + 1} candidates (${cell.numCandidates}): ${cell.candidates}\n"
+        for (cell in Table.cells) if (cell.getNumCandidates() > 0) {
+            printString += "Cell ${cell.index + 1} candidates (${cell.getNumCandidates()}): ${cell.candidates}\n"
         }
         return printString
     }

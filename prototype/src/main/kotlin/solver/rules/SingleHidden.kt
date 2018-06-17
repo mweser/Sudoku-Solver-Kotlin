@@ -1,22 +1,25 @@
 package solver.rules
 
 import components.Cell
+import components.CellValue
 import components.Row
 import components.Table
 
 object SingleHidden : RuleCheck() {
 
-    var valuesSet = 0
+    var instancesFound = 0
 
     override fun check(): Int {
-        valuesSet = 0
+        instancesFound = 0
 
         for (cell in Table.cells) {
-            areAnyUniqueCandidateValue(cell, cell.row, cell.column, cell.block)
+            if (areAnyUniqueCandidateValue(cell, cell.row, cell.column, cell.block)) {
+                instancesFound++
+            }
         }
 
-        println("\nHidden single check: $valuesSet values set\n")
-        return valuesSet
+        println("\nHidden single check: $instancesFound instances found\n")
+        return instancesFound
     }
 
     private fun <T : Row> areAnyUniqueCandidateValue(cell: Cell, vararg rowTypes: T): Boolean {
@@ -28,9 +31,18 @@ object SingleHidden : RuleCheck() {
 
     private fun <T : Row> isUniqueCandidateValue(cell: Cell, row: T): Boolean {
 
-        
+        for (value in CellValue.ONE.ordinal..CellValue.NINE.ordinal) {
+            if (cell.candidates.contains(value)) {
+                for (otherCell in row.cells) {
+                    if (otherCell != cell && otherCell.candidates.contains(value)) {
+                        return false
+                    }
+                }
 
-
-        return false
+                cell.value = CellValue.values()[value]
+                println("Hidden single found for ${CellValue.values()[value]} in $cell")
+            }
+        }
+        return true
     }
 }

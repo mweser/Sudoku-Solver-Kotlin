@@ -9,7 +9,7 @@ object SingleNaked : RuleCheck() {
     override fun check(): Int {
         valuesSet = 0
 
-        for (cell in Table.cells) if (cell.numCandidates == 1) {
+        for (cell in Table.cells) if (cell.getNumCandidates() == 1) {
             cell.value = cell.candidates.getRemainingCandidate()
             valuesSet++
         }

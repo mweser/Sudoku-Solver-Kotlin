@@ -14,7 +14,6 @@ enum class CellValue {
 class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
 
     var candidates = Candidates()
-    var numCandidates = 9
 
     var isMutable: Boolean = true
         set(value) {
@@ -28,17 +27,17 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
             if (isMutable && value != NONE) {
                 field = value
                 cellValueUpdated(this)
-                candidates.clearAllCandidates()
-                numCandidates = 0
+                candidates.clearAll()
                 isMutable = false
             }
         }
 
-    init { addCellToSets(block, row, column) }
+    init {
+        addCellToSets(block, row, column)
+    }
 
     fun eliminateCandidate(valueToEliminate: CellValue) {
         candidates.eliminateValue(valueToEliminate)
-        numCandidates = candidates.count
     }
 
     fun initializeCellValue(intValue: Int) {
@@ -49,24 +48,24 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
         }
     }
 
-    private fun <T: Row> addCellToSets(vararg rows: T) {
+    private fun <T : Row> addCellToSets(vararg rows: T) {
         for (row in rows) {
             row.addCell(this@Cell)
         }
     }
 
-    fun propertiesToPrint(): String {
-        return """
+    fun getNumCandidates(): Int {
+        return candidates.count
+    }
+
+    override fun toString(): String {
+        return return """
             Cell #${index + 1}  (${row.index + 1}, ${column.index + 1})
             Value: $value
             Mutable: $isMutable
             Candidates: $candidates
             Block #${block.index}: ${block.position}
+
         """.trimIndent()
-
-    }
-
-    override fun toString(): String {
-        return value.toString()
     }
 }

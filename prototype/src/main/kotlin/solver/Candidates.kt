@@ -12,15 +12,20 @@ class Candidates(vararg valuesToEliminate: CellValue) {
         eliminateValue(CellValue.NONE)
     }
 
-    fun eliminateValue(value: CellValue): Boolean {
-        if (count > 1) {
-            if (isValueInRange(value)) {
-                candidates[value.ordinal] = false
-                count--
-                valueEliminated(value, count)
-            }
+    fun eliminateValue(value: CellValue) {
+        if (isValueInRange(value)) {
+            candidates[value.ordinal] = false
+            count--
+            valueEliminated(value, count)
         }
-        return count <= 1
+    }
+
+    fun contains(index: Int): Boolean {
+        return candidates[index]
+    }
+
+    fun contains(value: CellValue): Boolean {
+        return candidates[value.ordinal]
     }
 
     fun getRemainingCandidate(): CellValue {
@@ -35,7 +40,6 @@ class Candidates(vararg valuesToEliminate: CellValue) {
     }
 
     fun assertTrueCandidates(vararg cellValues: CellValue): Boolean {
-
         if (count != cellValues.size) {
             return false
         }
@@ -48,9 +52,18 @@ class Candidates(vararg valuesToEliminate: CellValue) {
         return true
     }
 
+    fun clearAllExcept(vararg values: CellValue) {
+        clearAll()
 
-    fun clearAllCandidates() {
+        for (value in values) {
+            candidates[value.ordinal] = true
+            count++
+        }
+    }
+
+    fun clearAll() {
         candidates = BooleanArray(10) { false }
+        count = 0
     }
 
     private fun isValueInRange(value: CellValue): Boolean {

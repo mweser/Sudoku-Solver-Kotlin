@@ -22,13 +22,6 @@ open class Row(val index: Int) {
         }
     }
 
-    fun isDone(): Boolean {
-        for (cell in cells) if (cell.value == CellValue.NONE) {
-            return false
-        }
-        return true
-    }
-
     override fun toString(): String {
         return "${printCellValues()}"
     }
