@@ -27,11 +27,14 @@ fun run() {
         counter++
     }
 
-    println("Puzzle solve!")
+    println("Done")
 }
 
 fun solve(): Boolean {
 
+    Eliminate.run()
 
-    return Eliminate.run() == 1
+
+
+    return false
 }
