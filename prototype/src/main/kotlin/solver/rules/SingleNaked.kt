@@ -15,7 +15,6 @@ object SingleNaked : RuleCheck() {
         }
 
         println("\nNaked single check: $valuesSet values set\n")
-
         return valuesSet
     }
 }

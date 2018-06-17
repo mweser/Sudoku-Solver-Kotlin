@@ -33,9 +33,11 @@ fun run() {
 
 fun solve(): Boolean {
 
-    Eliminate.check()
-    SingleNaked.check()
+    var changes = 0
+
+    changes += Eliminate.check()
+    changes += SingleNaked.check()
 
 
-    return false
+    return changes == 0
 }
