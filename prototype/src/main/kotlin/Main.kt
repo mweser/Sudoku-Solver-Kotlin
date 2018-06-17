@@ -1,6 +1,7 @@
 
 import components.Table
 import solver.rules.Eliminate
+import solver.rules.SingleNaked
 import util.Config
 
 fun main(args: Array<String>) {
@@ -16,7 +17,7 @@ fun run() {
     val maxIterations = 50
     var isDone = false
 
-    while (counter < 3 && !isDone) {
+    while (counter < 10 && !isDone) {
         isDone = solve()
 
         if (Config.DISPLAY_TABLE) {
@@ -32,8 +33,8 @@ fun run() {
 
 fun solve(): Boolean {
 
-    Eliminate.run()
-
+    Eliminate.check()
+    SingleNaked.check()
 
 
     return false

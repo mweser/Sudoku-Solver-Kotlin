@@ -4,17 +4,18 @@ import components.Cell
 import components.CellValue
 import components.Table
 
-object Eliminate {
+object Eliminate : RuleCheck() {
 
     private var numEliminated = 0
 
-    fun run(): Int {
+    override fun check(): Int {
         numEliminated = 0
 
         for (cell in Table.cells) {
             eliminateFromCell(cell)
         }
 
+        // todo Extract to logger class
         println("$this\n\nEliminated: $numEliminated")
         return numEliminated
     }
@@ -43,7 +44,7 @@ object Eliminate {
 
     override fun toString(): String {
         var printString = ""
-        for (cell in Table.cells) {
+        for (cell in Table.cells) if (cell.numCandidates > 0) {
             printString += "Cell ${cell.index + 1} candidates (${cell.numCandidates}): ${cell.candidates}\n"
         }
         return printString
