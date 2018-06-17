@@ -22,7 +22,7 @@ class CellTest {
 
     /**
      * Create mock rows, columns, and blocks and pass them into Cell
-     * Run .eliminate()
+     * Run .eliminateCandidate()
      * Check values on Cell
      */
     @Test
@@ -32,7 +32,7 @@ class CellTest {
         whenever(column.values).thenReturn(populateMockWithValues(0, 0, 2, 0, 4, 0, 6, 0, 8))
         whenever(block.values).thenReturn(populateMockWithValues(0, 0, 2, 0, 4, 0, 0, 0, 0))
 
-        cell.eliminate()
+        cell.eliminateCandidate()
         assert(cell.numCandidates == 0 && cell.value == FIVE)
     }
 
@@ -42,7 +42,7 @@ class CellTest {
         whenever(column.values).thenReturn(populateMockWithValues(0, 0, 2, 0, 4, 0, 6, 0, 8))
         whenever(block.values).thenReturn(populateMockWithValues(0, 0, 2, 0, 4, 0, 0, 0, 0))
 
-        cell.eliminate()
+        cell.eliminateCandidate()
         assert(cell.numCandidates == 2 &&
                 cell.value == NONE &&
                 cell.candidates.assertTrueCandidates(FIVE, NINE))
@@ -54,7 +54,7 @@ class CellTest {
         whenever(column.values).thenReturn(populateMockWithValues(0))
         whenever(block.values).thenReturn(populateMockWithValues(0))
 
-        cell.eliminate()
+        cell.eliminateCandidate()
         assert(cell.numCandidates == 9 &&
                 cell.value == NONE &&
                 cell.candidates.assertTrueCandidates(FIVE, NINE, ONE, TWO, THREE, FOUR, SIX, SEVEN, EIGHT))
@@ -69,7 +69,7 @@ class CellTest {
 
 
 
-//        assertFailsWith(java.lang.Exception, cell.eliminate())
+//        assertFailsWith(java.lang.Exception, cell.eliminateCandidate())
 
         // todo Assert exception thrown here
         assert(true)

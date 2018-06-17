@@ -16,7 +16,7 @@ fun run() {
     val maxIterations = 50
     var isDone = false
 
-    while (counter < 10 && !isDone) {
+    while (counter < 3 && !isDone) {
         isDone = solve()
 
         if (Config.DISPLAY_TABLE) {

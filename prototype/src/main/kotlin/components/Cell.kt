@@ -1,8 +1,10 @@
 package components
 
-import components.CellValue.*
+import components.CellValue.NINE
+import components.CellValue.NONE
+import components.CellValue.ONE
+import components.CellValue.values
 import solver.Candidates
-import util.Logger
 import util.Logger.cellValueUpdated
 
 enum class CellValue {
@@ -11,14 +13,13 @@ enum class CellValue {
 
 class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
 
+    var candidates = Candidates()
+    var numCandidates = 9
+
     var isMutable: Boolean = true
         set(value) {
             if (isMutable) {
                 field = value
-            }
-
-            if (!isMutable) {
-                Logger.cellSetToImmutable(this)
             }
         }
 
@@ -33,45 +34,15 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
             }
         }
 
-    var prevValue: CellValue = NONE
-    var candidates = Candidates()
-    var numCandidates = 9
-
     init { addCellToSets(block, row, column) }
 
-    fun eliminate() {
-        if (isMutable) {
-            var values = ArrayList<CellValue>()
-            values.addAll(row.values)
-            values.addAll(column.values)
-            values.addAll(block.values)
-
-            for (i in ONE.ordinal..NINE.ordinal) {
-                if (values.containsAll(CellValue.values().toList())) {
-                    throw Exception ("All values taken: cannot assign value to cell\n" +
-                            "${propertiesToPrint()}")
-                }
-
-                if (values.contains(CellValue.values()[i]) &&
-                        candidates.candidates[i]) {
-                    eliminate(CellValue.values()[i])
-                }
-            }
-        }
-    }
-
-    fun eliminate(valueToEliminate: CellValue) {
+    fun eliminateCandidate(valueToEliminate: CellValue) {
         candidates.eliminateValue(valueToEliminate)
         numCandidates = candidates.count
-
-        if (numCandidates == 1) {
-            value = candidates.getRemainingCandidate()
-        }
     }
 
     fun initializeCellValue(intValue: Int) {
         value = values()[intValue]
-        candidates = Candidates(value)
 
         if (intValue in ONE.ordinal..NINE.ordinal) {
             isMutable = false
@@ -84,7 +55,7 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
         }
     }
 
-    private fun propertiesToPrint(): String {
+    fun propertiesToPrint(): String {
         return """
             Cell #${index + 1}  (${row.index + 1}, ${column.index + 1})
             Value: $value
