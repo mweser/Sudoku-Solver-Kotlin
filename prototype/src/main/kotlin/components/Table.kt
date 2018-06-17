@@ -4,33 +4,16 @@ import input.FileInput
 import mapping.CellMap
 
 object Table {
-    private var blocks = Array(9) { i -> Block(i) }
-    private var rows = Array(9) { i -> Row(i) }
-    private var columns = Array(9) { i -> Column(i) }
+    var blocks = Array(9) { i -> Block(i) }
+    var rows = Array(9) { i -> Row(i) }
+    var columns = Array(9) { i -> Column(i) }
 
-    private var cells = Array(81)
+    var cells = Array(81)
     { i -> Cell(i,
                 blocks[CellMap.toBlockIndex(i)],
                 rows[CellMap.toRow(i)],
                 columns[CellMap.toColumn(i)])
     }
-
-    fun eliminate(): Boolean {
-        for (cell in cells) {
-            cell.eliminate()
-        }
-
-        return spacesRemaining == 81
-    }
-
-    var spacesRemaining = 81
-        get() {
-            var i = 0
-            for (cell in cells) if (cell.value != CellValue.NONE) {
-                i++
-            }
-            return i
-        }
 
     fun populateCellsWithValues() {
         var inputArray = FileInput.importIntArrayList()
@@ -57,13 +40,5 @@ object Table {
             index % 3 == 2 && index < rows.size - 1 -> "----------------------\n"
             else -> ""
         }
-    }
-
-    fun evaluateSolution(): String {
-
-
-
-
-        return "0"
     }
 }

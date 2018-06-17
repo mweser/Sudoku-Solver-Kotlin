@@ -1,5 +1,6 @@
 
 import components.Table
+import solver.rules.Eliminate
 import util.Config
 
 fun main(args: Array<String>) {
@@ -31,8 +32,6 @@ fun run() {
 
 fun solve(): Boolean {
 
-    Table.eliminate()
 
-
-    return Table.eliminate()
+    return Eliminate.run() == 1
 }
