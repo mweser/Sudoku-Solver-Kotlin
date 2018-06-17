@@ -9,16 +9,14 @@ import kotlin.math.min
 
 class CellTest {
 
-    lateinit var cell: Cell
+    private lateinit var cell: Cell
 
-    var row = mock(Row::class.java)
-    var column = mock(Column::class.java)
-    var block = mock(Block::class.java)
+    private var row = mock(Row::class.java)
+    private var column = mock(Column::class.java)
+    private var block = mock(Block::class.java)
 
     @Before
     fun setUp() {
-
-
         cell = Cell(row = row, column = column, block = block, index = 1)
     }
 

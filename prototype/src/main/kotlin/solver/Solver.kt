@@ -15,7 +15,7 @@ object Solver {
         var isDone = false
 
         while (counter < 10 && !isDone) {
-            isDone = Iteration().complete()
+            isDone = solve()
 
             if (Config.DISPLAY_TABLE) {
                 println("\n\nRound #${counter + 1}")
@@ -25,9 +25,15 @@ object Solver {
             counter++
         }
 
-        println("Puzzle complete!")
-
-
-
+        println("Puzzle solve!")
     }
+
+    fun solve(): Boolean {
+
+        Table.eliminate()
+
+
+        return Table.eliminate()
+    }
+
 }
