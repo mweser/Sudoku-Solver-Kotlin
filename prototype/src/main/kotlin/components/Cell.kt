@@ -4,7 +4,6 @@ import components.CellValue.NINE
 import components.CellValue.NONE
 import components.CellValue.ONE
 import components.CellValue.values
-import solver.Candidates
 import util.Logger.cellValueUpdated
 
 enum class CellValue {

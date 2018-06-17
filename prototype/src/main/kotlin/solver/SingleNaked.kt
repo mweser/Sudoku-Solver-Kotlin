@@ -1,4 +1,4 @@
-package solver.rules
+package solver
 
 import components.Table
 

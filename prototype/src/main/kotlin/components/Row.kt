@@ -1,6 +1,5 @@
 package components
 
-import solver.Candidates
 import util.Mockable
 
 @Mockable

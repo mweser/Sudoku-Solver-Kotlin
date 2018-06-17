@@ -9,6 +9,7 @@ import components.Row
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito
+import solver.Eliminate
 import kotlin.math.min
 
 class SingleNakedTest {

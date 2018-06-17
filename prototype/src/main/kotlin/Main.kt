@@ -1,6 +1,6 @@
 import components.Table
-import solver.rules.Eliminate
-import solver.rules.SingleNaked
+import solver.Eliminate
+import solver.SingleNaked
 import util.Config
 
 fun main(args: Array<String>) {

@@ -1,4 +1,4 @@
-package solver.rules
+package solver
 
 abstract class RuleCheck {
     abstract fun check(): Int

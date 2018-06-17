@@ -1,6 +1,5 @@
-package solver
+package components
 
-import components.CellValue
 import util.Logger.valueEliminated
 
 class Candidates(vararg valuesToEliminate: CellValue) {
