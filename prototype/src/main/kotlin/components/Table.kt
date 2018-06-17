@@ -1,6 +1,6 @@
 package components
 
-import input.FileInput
+import util.FileInput
 import mapping.CellMap
 
 object Table {

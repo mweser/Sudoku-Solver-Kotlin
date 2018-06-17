@@ -15,7 +15,7 @@ object Eliminate : RuleCheck() {
             eliminateFromCell(cell)
         }
 
-        println("$this\n\nEliminated: $numEliminated")
+        println("$this\n")
         return numEliminated
     }
 
@@ -46,6 +46,6 @@ object Eliminate : RuleCheck() {
         for (cell in Table.cells) if (cell.getNumCandidates() > 0) {
             printString += "Cell ${cell.index + 1} candidates (${cell.getNumCandidates()}): ${cell.candidates}\n"
         }
-        return printString
+        return "$printString\nCandidates eliminated: $numEliminated\n"
     }
 }

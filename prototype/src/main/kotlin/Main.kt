@@ -1,43 +1,24 @@
 import components.Table
 import solver.Eliminate
 import solver.SingleNaked
-import util.Config
 
 fun main(args: Array<String>) {
-    run()
-}
-
-fun run() {
-    Table.populateCellsWithValues()
-    println("\n\n")
-    println(Table)
-
     var counter = 0
-    val maxIterations = 50
     var isDone = false
 
-    while (counter < 10 && !isDone) {
-        isDone = solve()
+    Table.populateCellsWithValues()
 
-        if (Config.DISPLAY_TABLE) {
-            println("\n\nRound #${counter + 1}")
-            println(Table)
-            println()
-        }
+    while (counter < 10 && !isDone) {
+        println("\nRound #${counter + 1}\n$Table")
+        isDone = solve()
         counter++
     }
-
-    println("Done")
 }
 
 fun solve(): Boolean {
-
-    var changes = 0
-
-    changes += Eliminate.check()
+    var changes = Eliminate.check()
     changes += SingleNaked.check()
 //    changes += SingleHidden.check()
-
 
     return changes == 0
 }
