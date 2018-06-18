@@ -1,9 +1,13 @@
 package solver
 
+import javafx.scene.control.Cell
 import org.junit.Before
 import org.junit.Test
 
 class SingleHiddenTest {
+
+    var cell: Cell
+    var otherCell: Cell
 
     @Before
     fun setUp() {
