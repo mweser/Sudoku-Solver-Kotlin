@@ -30,13 +30,10 @@ object SingleHidden : RuleCheck() {
     }
 
     private fun <T : Row> isUniqueCandidateValue(cell: Cell, row: T): Boolean {
-
         for (value in CellValue.ONE.ordinal..CellValue.NINE.ordinal) {
             if (cell.candidates.contains(value)) {
-                for (otherCell in row.cells) {
-                    if (otherCell != cell && otherCell.candidates.contains(value)) {
-                        return false
-                    }
+                for (otherCell in row.cells) if (otherCellHasCandidate(cell, otherCell, value)) {
+                    return false
                 }
 
                 cell.value = CellValue.values()[value]
@@ -44,5 +41,10 @@ object SingleHidden : RuleCheck() {
             }
         }
         return true
+    }
+
+    internal fun otherCellHasCandidate(cell: Cell, otherCell: Cell, value: Int): Boolean {
+        return otherCell != cell &&
+                otherCell.candidates.contains(value)
     }
 }
