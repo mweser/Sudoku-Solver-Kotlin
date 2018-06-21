@@ -1,16 +1,26 @@
 package solver
 
-import javafx.scene.control.Cell
+import components.Block
+import components.Cell
+import components.CellValue
+import components.Column
+import components.Row
 import org.junit.Before
 import org.junit.Test
+import org.mockito.Mockito
 
 class SingleHiddenTest {
 
-    var cell: Cell
-    var otherCell: Cell
+    private lateinit var cell: components.Cell
+
+    private var row = Mockito.mock(Row::class.java)
+    private var column = Mockito.mock(Column::class.java)
+    private var block = Mockito.mock(Block::class.java)
 
     @Before
     fun setUp() {
+        cell = Cell(row = row, column = column, block = block, index = 1)
+
     }
 
     @Test
@@ -19,8 +29,8 @@ class SingleHiddenTest {
 
     @Test
     fun testOtherCellSameAsCurrentCell() {
-
-
+        assert(!SingleHidden.otherCellHasCandidate(cell, cell, CellValue.FIVE.ordinal))
+        {"Should assert false given the duplicate cells"}
     }
 
     @Test
