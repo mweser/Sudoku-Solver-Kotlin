@@ -1,5 +1,6 @@
 import components.Table
 import solver.Eliminate
+import solver.SingleHidden
 import solver.SingleNaked
 
 fun main(args: Array<String>) {
@@ -18,7 +19,7 @@ fun main(args: Array<String>) {
 fun solve(): Boolean {
     var changes = Eliminate.check()
     changes += SingleNaked.check()
-//    changes += SingleHidden.check()
+    changes += SingleHidden.check()
 
     return changes == 0
 }

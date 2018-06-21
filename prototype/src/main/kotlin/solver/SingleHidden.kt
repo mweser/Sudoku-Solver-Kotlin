@@ -13,38 +13,30 @@ object SingleHidden : RuleCheck() {
         instancesFound = 0
 
         for (cell in Table.cells) {
-            if (areAnyUniqueCandidateValue(cell, cell.row, cell.column, cell.block)) {
-                instancesFound++
-            }
+            scanRowForUniqueCandidate(cell, cell.row, cell.column, cell.block)
         }
 
         println("\nHidden single check: $instancesFound instances found\n")
         return instancesFound
     }
 
-    private fun <T : Row> areAnyUniqueCandidateValue(cell: Cell, vararg rowTypes: T): Boolean {
-        for (rowType in rowTypes) if (isUniqueCandidateValue(cell, rowType)) {
-            return true
-        }
-        return false
-    }
+    private fun <T : Row> scanRowForUniqueCandidate(cell: Cell, vararg rowTypes: T) {
 
-    private fun <T : Row> isUniqueCandidateValue(cell: Cell, row: T): Boolean {
-        for (value in CellValue.ONE.ordinal..CellValue.NINE.ordinal) {
-            if (cell.candidates.contains(value)) {
-                for (otherCell in row.cells) if (otherCellHasCandidate(cell, otherCell, value)) {
-                    return false
+        for (row in rowTypes) {
+
+            for (value in CellValue.ONE.ordinal..CellValue.NINE.ordinal) {
+
+                if (cell.candidates.contains(value) && row.getCandidateValueCount(value) == 1) {
+
+                    instancesFound++
+                    cell.value = CellValue.values()[value]
+                    println("Hidden single found for ${CellValue.values()[value]} in $cell")
+
+                    Eliminate.check()
+                    SingleNaked.check()
                 }
-
-                cell.value = CellValue.values()[value]
-                println("Hidden single found for ${CellValue.values()[value]} in $cell")
             }
-        }
-        return true
-    }
 
-    internal fun otherCellHasCandidate(cell: Cell, otherCell: Cell, value: Int): Boolean {
-        return otherCell != cell &&
-                otherCell.candidates.contains(value)
+        }
     }
 }

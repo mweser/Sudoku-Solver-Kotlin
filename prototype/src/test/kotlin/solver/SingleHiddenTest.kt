@@ -12,13 +12,19 @@ import org.mockito.Mockito
 class SingleHiddenTest {
 
     private lateinit var cell: components.Cell
+    private lateinit var otherCell: components.Cell
 
     private var row = Mockito.mock(Row::class.java)
     private var column = Mockito.mock(Column::class.java)
     private var block = Mockito.mock(Block::class.java)
 
+    private var otherRow = Mockito.mock(Row::class.java)
+    private var otherColumn = Mockito.mock(Column::class.java)
+    private var otherBlock = Mockito.mock(Block::class.java)
+
     @Before
     fun setUp() {
+        cell = Cell(row = row, column = column, block = block, index = 1)
         cell = Cell(row = row, column = column, block = block, index = 1)
 
     }

@@ -15,7 +15,7 @@ object FileInput {
     }
 
     private fun readFile(): String {
-        val fileName = "${inputFilePath}easy01.txt"
+        val fileName = "${inputFilePath}hard01.txt"
         return File(fileName).readText()
     }
 }

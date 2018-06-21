@@ -3,12 +3,12 @@ package components
 import util.Mockable
 
 @Mockable
-open class Row(val index: Int) {
+class Row(val index: Int) {
     var cells = ArrayList<Cell>()
     var size = 0
     var candidates = Candidates()
     var values = Array(9) { CellValue.NONE }
-            get() = Array(9) { i -> cells[i].value }
+        get() = Array(9) { i -> cells[i].value }
 
     fun addCell(cell: Cell): Boolean {
         return if (size > 9) {
@@ -19,6 +19,22 @@ open class Row(val index: Int) {
             size++
             true
         }
+    }
+
+    fun getCandidateValueCount(value: Int): Int {
+        return getCandidateValueCount(CellValue.values()[value])
+    }
+
+    fun getCandidateValueCount(value: CellValue): Int {
+        var count = 0
+
+        for (cell in cells) {
+            if (cell.candidates.contains(value)) {
+                count++
+            }
+        }
+
+        return count
     }
 
     override fun toString(): String {
@@ -49,4 +65,4 @@ open class Row(val index: Int) {
 }
 
 @Mockable
-class Column(index: Int): Row(index)
+class Column(index: Int) : Row(index)

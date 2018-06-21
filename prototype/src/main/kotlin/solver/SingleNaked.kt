@@ -12,6 +12,7 @@ object SingleNaked : RuleCheck() {
         for (cell in Table.cells) if (cell.getNumCandidates() == 1) {
             cell.value = cell.candidates.getRemainingCandidate()
             valuesSet++
+            Eliminate.check()
         }
 
         println("\nNaked single check: $valuesSet values set\n")
