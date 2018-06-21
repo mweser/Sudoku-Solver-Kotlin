@@ -4,6 +4,8 @@ import components.Cell
 import components.CellValue
 import components.Row
 import components.Table
+import util.Logger.printFoundHiddenSingle
+import util.Logger.printHiddenSingleResults
 
 object SingleHidden : RuleCheck() {
 
@@ -16,7 +18,7 @@ object SingleHidden : RuleCheck() {
             scanRowForUniqueCandidate(cell, cell.row, cell.column, cell.block)
         }
 
-        println("\nHidden single check: $instancesFound instances found\n")
+        printHiddenSingleResults(this)
         return instancesFound
     }
 
@@ -30,7 +32,7 @@ object SingleHidden : RuleCheck() {
 
                     instancesFound++
                     cell.value = CellValue.values()[value]
-                    println("Hidden single found for ${CellValue.values()[value]} in $cell")
+                    printFoundHiddenSingle(cell, value)
 
                     Eliminate.check()
                     SingleNaked.check()

@@ -2,6 +2,7 @@ import components.Table
 import solver.Eliminate
 import solver.SingleHidden
 import solver.SingleNaked
+import util.Logger.printRoundNumberAndTable
 
 fun main(args: Array<String>) {
     var counter = 0
@@ -10,7 +11,7 @@ fun main(args: Array<String>) {
     Table.populateCellsWithValues()
 
     while (counter < 10 && !isDone) {
-        println("\nRound #${counter + 1}\n$Table")
+        printRoundNumberAndTable(counter, Table)
         isDone = solve()
         counter++
     }

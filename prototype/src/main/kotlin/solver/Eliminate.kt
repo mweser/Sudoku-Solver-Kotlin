@@ -3,6 +3,7 @@ package solver
 import components.Cell
 import components.CellValue
 import components.Table
+import util.Logger.printEliminateResults
 
 object Eliminate : RuleCheck() {
 
@@ -15,7 +16,7 @@ object Eliminate : RuleCheck() {
             eliminateFromCell(cell)
         }
 
-        println("$this\n")
+        printEliminateResults(this)
         return numEliminated
     }
 
@@ -41,6 +42,7 @@ object Eliminate : RuleCheck() {
         }
     }
 
+    // todo Separate candidate printout from results of elimination
     override fun toString(): String {
         var printString = ""
         for (cell in Table.cells) if (cell.getNumCandidates() > 0) {

@@ -3,8 +3,33 @@ package util
 import components.Cell
 import components.CellValue
 import components.Row
+import components.Table
+import solver.Eliminate
+import solver.SingleHidden
+import solver.SingleNaked
 
 object Logger {
+
+    fun printRoundNumberAndTable(counter: Int, table: Table) {
+        println("\nRound #${counter + 1}\n$table")
+
+    }
+
+    fun printFoundHiddenSingle(cell: Cell, value: Int) {
+        println("Hidden single found for ${CellValue.values()[value]} in $cell")
+    }
+
+    fun printEliminateResults(eliminate: Eliminate) {
+        println("$eliminate\n")
+    }
+
+    fun printHiddenSingleResults(singleHidden: SingleHidden) {
+        println("\nHidden single check: ${singleHidden.instancesFound} instances found\n")
+    }
+
+    fun printNakedSingleResults(singleNaked: SingleNaked) {
+        println("\nNaked single check: ${singleNaked.valuesSet} values set\n")
+    }
 
     fun cellValueInitialized(cell: Cell) {
 //        println("Cell initialized ${getCellId(cell)}")

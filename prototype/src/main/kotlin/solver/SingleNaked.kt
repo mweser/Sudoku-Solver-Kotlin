@@ -1,6 +1,7 @@
 package solver
 
 import components.Table
+import util.Logger.printNakedSingleResults
 
 object SingleNaked : RuleCheck() {
 
@@ -15,7 +16,7 @@ object SingleNaked : RuleCheck() {
             Eliminate.check()
         }
 
-        println("\nNaked single check: $valuesSet values set\n")
+        printNakedSingleResults(this)
         return valuesSet
     }
 }
