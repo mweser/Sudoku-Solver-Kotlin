@@ -14,6 +14,8 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
 
     var candidates = Candidates()
 
+    var rule = "INITIAL"
+
     var isMutable: Boolean = true
         set(value) {
             if (isMutable) {
@@ -33,6 +35,11 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
 
     init {
         addCellToSets(block, row, column)
+    }
+
+    fun setValueWithRule(value: CellValue, rule: String) {
+        this.rule = rule
+        this.value = value
     }
 
     fun eliminateCandidate(valueToEliminate: CellValue) {

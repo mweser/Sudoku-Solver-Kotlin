@@ -7,7 +7,7 @@ import util.Logger.printEliminateResults
 
 object Eliminate : RuleCheck() {
 
-    private var numEliminated = 0
+    var numEliminated = 0
 
     override fun check(): Int {
         numEliminated = 0
@@ -40,14 +40,5 @@ object Eliminate : RuleCheck() {
                 }
             }
         }
-    }
-
-    // todo Separate candidate printout from results of elimination
-    override fun toString(): String {
-        var printString = ""
-        for (cell in Table.cells) if (cell.getNumCandidates() > 0) {
-            printString += "Cell ${cell.index + 1} candidates (${cell.getNumCandidates()}): ${cell.candidates}\n"
-        }
-        return "$printString\nCandidates eliminated: $numEliminated\n"
     }
 }

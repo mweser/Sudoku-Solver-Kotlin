@@ -10,25 +10,42 @@ import solver.SingleNaked
 
 object Logger {
 
+    val SHOW_CANDIDATES = false
+    val SHOW_ELIMINATE = false
+    val SHOW_NAKED_SINGLES = false
+    val SHOW_HIDDEN_SINGLES = false
+    val SHOW_SET = true
+
     fun printRoundNumberAndTable(counter: Int, table: Table) {
         println("\nRound #${counter + 1}\n$table")
-
     }
 
     fun printFoundHiddenSingle(cell: Cell, value: Int) {
-        println("Hidden single found for ${CellValue.values()[value]} in $cell")
+        if (SHOW_HIDDEN_SINGLES) println("Hidden single found for ${CellValue.values()[value]} in $cell")
     }
 
     fun printEliminateResults(eliminate: Eliminate) {
-        println("$eliminate\n")
+        if (SHOW_ELIMINATE) println("Candidates eliminated: ${eliminate.numEliminated}")
     }
 
     fun printHiddenSingleResults(singleHidden: SingleHidden) {
-        println("\nHidden single check: ${singleHidden.instancesFound} instances found\n")
+        if (SHOW_HIDDEN_SINGLES) println("Hidden single check: ${singleHidden.instancesFound} instances found ")
     }
 
     fun printNakedSingleResults(singleNaked: SingleNaked) {
-        println("\nNaked single check: ${singleNaked.valuesSet} values set\n")
+        if (SHOW_NAKED_SINGLES)  println("Naked single check: ${singleNaked.valuesSet} values set ")
+    }
+
+    fun printAllCandidates(table: Table) {
+        if (SHOW_CANDIDATES) {
+            var printString = ""
+
+            for (cell in table.cells) if (cell.getNumCandidates() > 0) {
+                printString += "Cell ${cell.index + 1} candidates (${cell.getNumCandidates()}): ${cell.candidates} "
+            }
+
+            println("$printString")
+        }
     }
 
     fun cellValueInitialized(cell: Cell) {
@@ -40,10 +57,10 @@ object Logger {
     }
 
     fun cellValueUpdated(cell: Cell) {
-        println("set${getCellId(cell)}")
+       if (SHOW_SET) println("set${getCellId(cell)}")
     }
 
-    fun <T: Row> rowValues(row: T, values: Array<CellValue>) {
+    fun <T : Row> rowValues(row: T, values: Array<CellValue>) {
 //        println("Values in Row ${row.index + 1}: $values")
     }
 
@@ -52,6 +69,6 @@ object Logger {
     }
 
     private fun getCellId(cell: Cell): String {
-        return "(${cell.row.index + 1},${cell.column.index + 1}) --> ${cell.value}"
+        return "(${cell.row.index + 1},${cell.column.index + 1}) --> ${cell.value}\t\t(${cell.rule})"
     }
 }

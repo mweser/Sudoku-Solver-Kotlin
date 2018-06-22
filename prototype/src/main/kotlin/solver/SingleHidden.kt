@@ -25,13 +25,12 @@ object SingleHidden : RuleCheck() {
     private fun <T : Row> scanRowForUniqueCandidate(cell: Cell, vararg rowTypes: T) {
 
         for (row in rowTypes) {
-
             for (value in CellValue.ONE.ordinal..CellValue.NINE.ordinal) {
 
                 if (cell.candidates.contains(value) && row.getCandidateValueCount(value) == 1) {
 
                     instancesFound++
-                    cell.value = CellValue.values()[value]
+                    cell.setValueWithRule(CellValue.values()[value], "Hidden single")
                     printFoundHiddenSingle(cell, value)
 
                     Eliminate.check()
