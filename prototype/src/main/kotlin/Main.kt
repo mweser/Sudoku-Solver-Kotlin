@@ -2,6 +2,7 @@ import components.Table
 import solver.Eliminate
 import solver.SingleHidden
 import solver.SingleNaked
+import util.Logger.printCandidateTable
 import util.Logger.printRoundNumberAndTable
 
 fun main(args: Array<String>) {
@@ -15,6 +16,8 @@ fun main(args: Array<String>) {
         isDone = solve()
         counter++
     }
+
+    printCandidateTable(Table)
 }
 
 fun solve(): Boolean {

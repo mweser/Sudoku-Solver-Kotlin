@@ -16,6 +16,55 @@ object Logger {
     val SHOW_HIDDEN_SINGLES = false
     val SHOW_SET = true
 
+    val horizontalBar = "----------------------"
+    val horizontalBarLong = "-------------------------------------------------------------------------"
+    val thickHorizontalLong = "========================================================================="
+
+
+    fun printCandidateTable(table: Table) {
+        var out = ""
+
+        for (index in 0 until 27) {
+            var row = table.rows[index / 3]
+            out += printRowOfCandidates(row, index)
+
+            if (index % 9 == 8 && index != 26) {
+                out += "$thickHorizontalLong\n"
+            } else if (index % 3 == 2 && index != 26) {
+                out += "$horizontalBarLong\n"
+            }
+        }
+
+        println(out)
+    }
+
+    fun printRowOfCandidates(row: Row, index: Int): String {
+        var outString = ""
+        var startValue = (index % 3) * 3 + 1
+
+        for (index in 0 until row.cells.size) {
+            var cell = row.cells[index]
+
+            for (value in startValue until (startValue + 3)) {
+
+                outString += when {
+                    cell.candidates.contains(value) -> "$value "
+                    cell.value != CellValue.NONE -> "${cell.value.ordinal} "
+                    else -> "  "
+                }
+            }
+
+            outString += when {
+                index == row.cells.size - 1 -> "\n"
+                index % 3 == 2 -> "|| "
+                else -> "| "
+
+            }
+        }
+
+        return outString
+    }
+
     fun printRoundNumberAndTable(counter: Int, table: Table) {
         println("\nRound #${counter + 1}\n$table")
     }
@@ -33,7 +82,7 @@ object Logger {
     }
 
     fun printNakedSingleResults(singleNaked: SingleNaked) {
-        if (SHOW_NAKED_SINGLES)  println("Naked single check: ${singleNaked.valuesSet} values set ")
+        if (SHOW_NAKED_SINGLES) println("Naked single check: ${singleNaked.valuesSet} values set ")
     }
 
     fun printAllCandidates(table: Table) {
@@ -57,7 +106,7 @@ object Logger {
     }
 
     fun cellValueUpdated(cell: Cell) {
-       if (SHOW_SET) println("set${getCellId(cell)}")
+        if (SHOW_SET) println("set${getCellId(cell)}")
     }
 
     fun <T : Row> rowValues(row: T, values: Array<CellValue>) {
