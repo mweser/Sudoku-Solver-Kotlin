@@ -34,7 +34,7 @@ class SingleNakedTest {
 
     @Test
     fun testAfterElimination() {
-
+        // todo come back and make more global tests
 
     }
 

@@ -1,7 +1,7 @@
 package components
 
-import util.FileInput
 import mapping.CellMap
+import util.FileInput
 
 object Table {
     var blocks = Array(9) { i -> Block(i) }
@@ -16,7 +16,7 @@ object Table {
     }
 
     fun populateCellsWithValues() {
-        var inputArray = FileInput.importIntArrayList()
+        var inputArray = FileInput.importFileToPuzzleArray("hard01.txt")
 
         if (inputArray.size != cells.size) {
             throw Exception("Invalid input array size: ${inputArray.size}")

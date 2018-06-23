@@ -28,13 +28,11 @@ object SingleHidden : RuleCheck() {
             for (value in CellValue.ONE.ordinal..CellValue.NINE.ordinal) {
 
                 if (cell.candidates.contains(value) && row.getCandidateValueCount(value) == 1) {
-
                     instancesFound++
                     cell.setValueWithRule(CellValue.values()[value], "Hidden single")
                     printFoundHiddenSingle(cell, value)
-
-//                    instancesFound += Eliminate.check()
-//                    instancesFound += SingleNaked.check()
+                    instancesFound += Eliminate.check()
+                    instancesFound += SingleNaked.check()
                 }
             }
 

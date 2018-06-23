@@ -8,14 +8,14 @@ object FileInput {
             "/Users/matthewweser/code/kotlin/SudokuSolverKotlin/prototype/src/main/resources/input/"
 
 
-    fun importIntArrayList(): ArrayList<Int> {
+    fun importFileToPuzzleArray(name: String): ArrayList<Int> {
         var intArrayList = ArrayList<Int>()
-        intArrayList.addAll(readFile().split(" ", "\n", " \n", ",").map { it.toInt() })
+        intArrayList.addAll(readFile(name).split(" ", "\n", " \n", ",").map { it.toInt() })
         return intArrayList
     }
 
-    private fun readFile(): String {
-        val fileName = "${inputFilePath}hard01.txt"
+    private fun readFile(name: String): String {
+        val fileName = "${inputFilePath}$name"
         return File(fileName).readText()
     }
 }

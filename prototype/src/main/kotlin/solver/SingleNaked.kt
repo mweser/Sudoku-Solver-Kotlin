@@ -25,6 +25,7 @@ object SingleNaked : RuleCheck() {
         if (cell.getNumCandidates() == 1) {
             cell.setValueWithRule(cell.candidates.getRemainingCandidate(), "Naked single")
             newValuesSet++
+            newValuesSet += Eliminate.check()
         }
         return newValuesSet
     }
