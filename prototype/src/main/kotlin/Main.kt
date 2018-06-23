@@ -20,7 +20,8 @@ fun main(args: Array<String>) {
 }
 
 fun solve(): Boolean {
-    var changes = SingleNaked.check()
+    var changes = Eliminate.check()
+    changes += SingleNaked.check()
     changes += SingleHidden.check()
 
     return changes == 0

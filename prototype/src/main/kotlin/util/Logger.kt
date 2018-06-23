@@ -13,7 +13,7 @@ object Logger {
     val SHOW_CANDIDATES = false
     val SHOW_ELIMINATE = false
     val SHOW_NAKED_SINGLES = false
-    val SHOW_HIDDEN_SINGLES = false
+    val SHOW_HIDDEN_SINGLES = true
     val SHOW_SET = true
 
     val horizontalBar = "----------------------"

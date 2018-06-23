@@ -13,7 +13,6 @@ enum class CellValue {
 class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
 
     var candidates = Candidates()
-
     var rule = "INITIAL"
 
     var isMutable: Boolean = true
@@ -42,6 +41,10 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
         this.rule = rule
         this.value = value
     }
+
+//    fun eliminateCandidates(candidates: Candidates) {
+//        candidates.eliminate()
+//    }
 
     fun eliminateCandidate(valueToEliminate: CellValue) {
         candidates.eliminateValue(valueToEliminate)

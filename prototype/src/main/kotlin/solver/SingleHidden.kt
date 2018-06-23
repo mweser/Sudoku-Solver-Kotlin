@@ -33,8 +33,8 @@ object SingleHidden : RuleCheck() {
                     cell.setValueWithRule(CellValue.values()[value], "Hidden single")
                     printFoundHiddenSingle(cell, value)
 
-                    Eliminate.check()
-                    SingleNaked.check()
+//                    instancesFound += Eliminate.check()
+//                    instancesFound += SingleNaked.check()
                 }
             }
 

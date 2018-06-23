@@ -21,6 +21,15 @@ class Row(val index: Int) {
         }
     }
 
+    fun getOtherCells(vararg cellsToExclude: Cell): ArrayList<Cell> {
+        var excludedCellArray = cells
+        for (cell in cellsToExclude) {
+            excludedCellArray.remove(cell)
+        }
+
+        return excludedCellArray
+    }
+
     fun getCandidateValueCount(value: Int): Int {
         return getCandidateValueCount(CellValue.values()[value])
     }

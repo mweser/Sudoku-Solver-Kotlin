@@ -13,7 +13,7 @@ object SingleNaked : RuleCheck() {
         for (cell in Table.cells) if (cell.getNumCandidates() == 1) {
             cell.setValueWithRule(cell.candidates.getRemainingCandidate(), "Naked single")
             valuesSet++
-            Eliminate.check()
+            valuesSet += Eliminate.check()
         }
 
         printNakedSingleResults(this)
