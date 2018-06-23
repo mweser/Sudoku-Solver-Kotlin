@@ -37,6 +37,7 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
         addCellToSets(block, row, column)
     }
 
+    // todo add more information, such as "along row/column, etc."
     fun setValueWithRule(value: CellValue, rule: String) {
         this.rule = rule
         this.value = value
