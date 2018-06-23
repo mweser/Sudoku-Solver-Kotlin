@@ -67,6 +67,13 @@ class Candidates(vararg valuesToEliminate: CellValue) {
         return this
     }
 
+    fun setAll(): Candidates {
+        candidates = BooleanArray(10) { true }
+        candidates[CellValue.NONE.ordinal] = false
+        count = 9
+        return this
+    }
+
     private fun isValueInRange(value: CellValue): Boolean {
         return value.ordinal in CellValue.ONE.ordinal..CellValue.NINE.ordinal
     }

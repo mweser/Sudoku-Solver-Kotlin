@@ -12,17 +12,20 @@ object SingleNaked : RuleCheck() {
         valuesSet = 0
 
         for (cell in Table.cells) {
-            evaluateCell(cell)
+            valuesSet += evaluateCell(cell)
         }
 
         printNakedSingleResults(this)
         return valuesSet
     }
 
-    fun evaluateCell(cell: Cell) {
+    fun evaluateCell(cell: Cell): Int {
+        var newValuesSet = 0
+
         if (cell.getNumCandidates() == 1) {
             cell.setValueWithRule(cell.candidates.getRemainingCandidate(), "Naked single")
-            SingleNaked.valuesSet++
+            newValuesSet++
         }
+        return newValuesSet
     }
 }
