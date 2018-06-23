@@ -1,17 +1,12 @@
 package mapping
 
-import org.junit.Before
 import org.junit.Test
 
 class BlockMapTest {
 
-    val indices = populateIndexValues()
-    var results = ArrayList<Int>()
-    var expectedArray = ArrayList<Int>()
-
-    @Before
-    fun setUp() {
-    }
+    private val indices = populateIndexValues()
+    private var results = ArrayList<Int>()
+    private var expectedArray = ArrayList<Int>()
 
     @Test
     fun fromBlockRowColumn() {
@@ -22,13 +17,9 @@ class BlockMapTest {
             results.add(BlockMap.fromBlockRowColumn(rows[i], columns[i]))
         }
 
-        assert(results == indices, {"\nRows:      $rows\n" +
-                "Columns:   $columns\nExpected:  $indices\nResult:    $results"})
+        assert(results == indices)
+        {"\nRows:      $rows\nColumns:   $columns\nExpected:  $indices\nResult:    $results"}
 
-    }
-
-    @Test
-    fun toBlockPosition() {
     }
 
     @Test
@@ -39,7 +30,8 @@ class BlockMapTest {
             results.add(BlockMap.toBlockRow(index))
         }
 
-        assert(results == expectedArray) {"\nInput:    $indices\nExpected: $expectedArray\nResult:   $results"}
+        assert(results == expectedArray)
+        {"\nInput:    $indices\nExpected: $expectedArray\nResult:   $results"}
     }
 
     @Test
@@ -50,26 +42,11 @@ class BlockMapTest {
             results.add(BlockMap.toBlockColumn(index))
         }
 
-        assert(results == expectedArray, {"\nInput:    $indices\nExpected: $expectedArray\nResult:   $results"})
+        assert(results == expectedArray)
+        {"\nInput:    $indices\nExpected: $expectedArray\nResult:   $results"}
     }
 
-    @Test
-    fun toMinRow() {
-    }
-
-    @Test
-    fun toMaxRow() {
-    }
-
-    @Test
-    fun toMinColumn() {
-    }
-
-    @Test
-    fun toMaxColumn() {
-    }
-
-    fun populateIndexValues(startIndex: Int = 0, endIndex: Int = 9, step: Int = 1): ArrayList<Int> {
+    private fun populateIndexValues(startIndex: Int = 0, endIndex: Int = 9, step: Int = 1): ArrayList<Int> {
         var array = ArrayList<Int>()
         for (index in startIndex until endIndex step step) {
             array.add(index)

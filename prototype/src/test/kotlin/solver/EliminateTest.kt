@@ -67,18 +67,13 @@ class EliminateTest {
                 cell.candidates.assertTrueCandidates(CellValue.FIVE, CellValue.NINE, CellValue.ONE, CellValue.TWO, CellValue.THREE, CellValue.FOUR, CellValue.SIX, CellValue.SEVEN, CellValue.EIGHT))
     }
 
-    @Test
+    @Test(expected = Exception::class)
     fun testEliminateAllValuesTaken() {
         whenever(row.values).thenReturn(populateMockWithValues(0, 1, 2, 3, 4, 0, 0, 7, 0))
         whenever(column.values).thenReturn(populateMockWithValues(0, 0, 2, 0, 4, 0, 6, 0, 8))
         whenever(block.values).thenReturn(populateMockWithValues(9, 0, 2, 0, 4, 5, 0, 9, 0))
 
-//        assertFailsWith(java.lang.Exception, cell.eliminateCandidate())
-
-        // todo Assert exception thrown here
-        assert(true)
-//        assert(cell.numCandidates == 0 &&
-//                cell.value == NONE) { "Cell value is ${cell.value}" }
+        Eliminate.eliminateFromCell(cell)
     }
 
     private fun populateMockWithValues(vararg intValues: Int): Array<CellValue> {

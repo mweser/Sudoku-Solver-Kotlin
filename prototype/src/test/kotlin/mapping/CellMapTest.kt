@@ -1,22 +1,11 @@
 package mapping
 
-import org.junit.Before
 import org.junit.Test
 
 class CellMapTest {
 
     // [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80]
-    val cellIndices = populateIndexValues()
-
-    @Before
-    fun setUp() {
-    }
-
-    @Test
-    fun fromRowColumn() {
-
-        assert(true)
-    }
+    private val cellIndices = populateIndexValues()
 
     @Test
     fun toBlockIndex() {
@@ -29,11 +18,7 @@ class CellMapTest {
         for (index in cellIndices) {
             results.add(CellMap.toBlockIndex(index))
         }
-        assert(results == expectedArray, {"\nExpected: $expectedArray\nResults:  $results"})
-    }
-
-    @Test
-    fun toBlockPosition() {
+        assert(results == expectedArray) {"\nExpected: $expectedArray\nResults:  $results"}
     }
 
     @Test
@@ -47,7 +32,7 @@ class CellMapTest {
         for (index in cellIndices) {
             results.add(CellMap.toBlockRow(index))
         }
-        assert(results == expectedArray, {"\nExpected: $expectedArray\nResults:  $results"})
+        assert(results == expectedArray) {"\nExpected: $expectedArray\nResults:  $results"}
     }
 
     @Test
@@ -61,7 +46,7 @@ class CellMapTest {
         for (index in cellIndices) {
             results.add(CellMap.toBlockColumn(index))
         }
-        assert(results == expectedArray, {"\nExpected: $expectedArray\nResults:  $results"})
+        assert(results == expectedArray) {"\nExpected: $expectedArray\nResults:  $results"}
     }
 
     @Test
@@ -75,7 +60,7 @@ class CellMapTest {
         for (index in cellIndices) {
             results.add(CellMap.toRow(index))
         }
-        assert(results == expectedArray, {"\nExpected: $expectedArray\nResults:  $results"})
+        assert(results == expectedArray) {"\nExpected: $expectedArray\nResults:  $results"}
 
     }
 
@@ -90,11 +75,11 @@ class CellMapTest {
         for (index in cellIndices) {
             results.add(CellMap.toColumn(index))
         }
-        assert(results == expectedArray, {"\nExpected: $expectedArray\nResults:  $results"})
+        assert(results == expectedArray) {"\nExpected: $expectedArray\nResults:  $results"}
 
     }
 
-    fun populateIndexValues(startIndex: Int = 0, endIndex: Int = 81, step: Int = 5): ArrayList<Int> {
+    private fun populateIndexValues(startIndex: Int = 0, endIndex: Int = 81, step: Int = 5): ArrayList<Int> {
         var array = ArrayList<Int>()
         for (index in startIndex until endIndex step step) {
             array.add(index)
