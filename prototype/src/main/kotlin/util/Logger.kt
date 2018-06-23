@@ -65,6 +65,11 @@ object Logger {
         return outString
     }
 
+    fun printRoundNumberAndCandidateTable(counter: Int, table: Table) {
+        println("\nRound #${counter + 1}")
+        printCandidateTable(table)
+    }
+
     fun printRoundNumberAndTable(counter: Int, table: Table) {
         println("\nRound #${counter + 1}\n$table")
     }
