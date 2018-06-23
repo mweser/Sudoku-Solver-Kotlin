@@ -24,14 +24,14 @@ class SingleNakedTest {
     @Before
     fun setUp() {
         cell = Cell(row = row, column = column, block = block, index = 1)
-        candidates.clearAllExcept(CellValue.FIVE)
+        cell.candidates = candidates.clearAllExcept(CellValue.FIVE)
 
     }
 
     @Test
     fun testSingleCandidateCheck() {
-        SingleNaked.check()
-
+        SingleNaked.evaluateCell(cell)
+        assert(cell.value == CellValue.FIVE) {"Cell value should be FIVE, not ${cell.value}"}
     }
 
     @Test

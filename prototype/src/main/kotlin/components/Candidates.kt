@@ -51,18 +51,20 @@ class Candidates(vararg valuesToEliminate: CellValue) {
         return true
     }
 
-    fun clearAllExcept(vararg values: CellValue) {
+    fun clearAllExcept(vararg values: CellValue): Candidates {
         clearAll()
 
         for (value in values) {
             candidates[value.ordinal] = true
             count++
         }
+        return this
     }
 
-    fun clearAll() {
+    fun clearAll(): Candidates {
         candidates = BooleanArray(10) { false }
         count = 0
+        return this
     }
 
     private fun isValueInRange(value: CellValue): Boolean {
