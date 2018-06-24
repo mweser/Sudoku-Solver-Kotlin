@@ -22,9 +22,9 @@ object DoubleNaked : RuleCheck() {
     }
 
     fun checkForIdenticalCandidatePair(cell: Cell) {
-            checkForIdenticalCandidatePair(cell, cell.row)
-            checkForIdenticalCandidatePair(cell, cell.column)
-            checkForIdenticalCandidatePair(cell, cell.block)
+        checkForIdenticalCandidatePair(cell, cell.row)
+        checkForIdenticalCandidatePair(cell, cell.column)
+        checkForIdenticalCandidatePair(cell, cell.block)
     }
 
     fun <T : Row> checkForIdenticalCandidatePair(cell: Cell, rowType: T) {
