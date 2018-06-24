@@ -2,9 +2,16 @@ package components
 
 import util.Logger.valueEliminated
 
-class Candidates(vararg valuesToEliminate: CellValue) {
+class Candidates {
     var candidates = BooleanArray(10) { true }
     var count = 9
+        get() {
+            var numEnabled = 0
+            for (candidate in candidates) if (candidate) {
+                numEnabled++
+            }
+            return numEnabled
+        }
 
     init {
         candidates[CellValue.NONE.ordinal] = false

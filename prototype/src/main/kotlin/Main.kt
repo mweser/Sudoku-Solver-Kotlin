@@ -13,11 +13,13 @@ fun main(args: Array<String>) {
     Table.populateCellsWithValues()
     Eliminate.check()
 
-    while (counter < 30 && !isDone) {
+    while (counter < 3 && !isDone) {
         printRoundNumberAndCandidateTable(counter, Table)
         isDone = solve()
         counter++
     }
+
+    printRoundNumberAndCandidateTable(counter++, Table)
 }
 
 fun solve(): Boolean {

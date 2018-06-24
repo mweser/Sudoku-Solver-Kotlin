@@ -15,7 +15,7 @@ object Logger {
     val SHOW_CANDIDATES = false
     val SHOW_ELIMINATE = false
     val SHOW_NAKED_SINGLES = false
-    val SHOW_NAKED_DOUBLES = true
+    val SHOW_NAKED_DOUBLES = false
     val SHOW_HIDDEN_SINGLES = false
     val SHOW_SET = true
     val SHOW_CELL_CONTENTS = false
@@ -34,7 +34,7 @@ object Logger {
     }
 
     fun printEliminateCandidatesFromCell(cell: Cell, candidates: Candidates) {
-        if (SHOW_NAKED_DOUBLES) println("Eliminated $candidates\n${getCellContents(cell)}")
+        if (SHOW_NAKED_DOUBLES) println("Eliminated $candidates ${getCellContents(cell)}")
     }
 
     fun printCandidateTable(table: Table) {
@@ -143,10 +143,10 @@ object Logger {
     }
 
     private fun getCellCoordinates(cell: Cell): String {
-        return "Cell #${cell.index + 1} (${cell.row.index + 1},${cell.column.index + 1})"
+        return "Cell (${cell.row.index + 1},${cell.column.index + 1})"
     }
 
     private fun getCellSetString(cell: Cell): String {
-        return "${getCellCoordinates(cell)} --> ${cell.value}\t\t(${cell.rule})"
+        return "${getCellCoordinates(cell)} --> ${cell.value.ordinal}\t\t\t[${cell.rule}]"
     }
 }
