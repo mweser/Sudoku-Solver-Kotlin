@@ -1,5 +1,6 @@
 package components
 
+import mapping.GridPosition
 import util.Mockable
 
 @Mockable
@@ -30,6 +31,28 @@ class Row(val index: Int) {
         }
 
         return excludedCellArray
+    }
+
+    fun getUniqueBlockPositionForCandidateValue(value: CellValue): GridPosition {
+        var blockPosition = GridPosition.NONE
+
+        if (getCandidateValueCount(value) > 3) {
+            return GridPosition.NONE
+        }
+
+        for (cell in cells) {
+            if (cell.candidates.contains(value)) {
+                if (cell.block.position != blockPosition && blockPosition != GridPosition.NONE) {
+                    return GridPosition.NONE
+                }
+
+                if (cell.block.position == blockPosition || blockPosition == GridPosition.NONE) {
+                    blockPosition = cell.block.position
+                }
+            }
+        }
+
+        return blockPosition
     }
 
     fun getCandidateValuesWithNumOccurrences(numOccurrences: Int): ArrayList<CellValue> {
