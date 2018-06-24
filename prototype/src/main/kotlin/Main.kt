@@ -1,5 +1,6 @@
 
 import components.Table
+import solver.DoubleNaked
 import solver.Eliminate
 import solver.SingleHidden
 import solver.SingleNaked
@@ -12,7 +13,7 @@ fun main(args: Array<String>) {
     Table.populateCellsWithValues()
     Eliminate.check()
 
-    while (counter < 10 && !isDone) {
+    while (counter < 30 && !isDone) {
         printRoundNumberAndCandidateTable(counter, Table)
         isDone = solve()
         counter++
@@ -23,6 +24,7 @@ fun solve(): Boolean {
     var changes = Eliminate.check()
     changes += SingleNaked.check()
     changes += SingleHidden.check()
+    changes += DoubleNaked.check()
 
     return changes == 0
 }

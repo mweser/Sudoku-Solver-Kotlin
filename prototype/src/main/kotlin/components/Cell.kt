@@ -5,6 +5,7 @@ import components.CellValue.NONE
 import components.CellValue.ONE
 import components.CellValue.values
 import util.Logger.cellValueUpdated
+import util.Logger.printEliminateCandidatesFromCell
 
 enum class CellValue {
     NONE, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE
@@ -77,5 +78,18 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
             Block #${block.index}: ${block.position}
 
         """.trimIndent()
+    }
+
+    // todo this can be WAYYYY improved
+    fun eliminateCandidates(candidates: Candidates): Int {
+        var numEliminated = 0
+        for (index in 0 until candidates.candidates.size) {
+            if (candidates.candidates[index] && this.candidates.candidates[index]) {
+                this.candidates.candidates[index] = false
+                numEliminated++
+            }
+        }
+        printEliminateCandidatesFromCell(this, candidates)
+        return numEliminated
     }
 }

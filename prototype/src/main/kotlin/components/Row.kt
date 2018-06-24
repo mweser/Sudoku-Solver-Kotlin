@@ -22,7 +22,9 @@ class Row(val index: Int) {
     }
 
     fun getOtherCells(vararg cellsToExclude: Cell): ArrayList<Cell> {
-        var excludedCellArray = cells
+        var excludedCellArray = ArrayList<Cell>()
+        excludedCellArray.addAll(cells)
+
         for (cell in cellsToExclude) {
             excludedCellArray.remove(cell)
         }

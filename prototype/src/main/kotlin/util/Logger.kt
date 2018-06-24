@@ -1,9 +1,11 @@
 package util
 
+import components.Candidates
 import components.Cell
 import components.CellValue
 import components.Row
 import components.Table
+import solver.DoubleNaked
 import solver.Eliminate
 import solver.SingleHidden
 import solver.SingleNaked
@@ -13,16 +15,30 @@ object Logger {
     val SHOW_CANDIDATES = false
     val SHOW_ELIMINATE = false
     val SHOW_NAKED_SINGLES = false
-    val SHOW_HIDDEN_SINGLES = true
+    val SHOW_NAKED_DOUBLES = true
+    val SHOW_HIDDEN_SINGLES = false
     val SHOW_SET = true
+    val SHOW_CELL_CONTENTS = false
 
     val horizontalBar = "----------------------"
     val horizontalBarLong = "-------------------------------------------------------------------------"
     val thickHorizontalLong = "========================================================================="
 
+    fun printNakedDoublesResults(doubleNaked: DoubleNaked) {
+        if (SHOW_NAKED_DOUBLES) println("Doubles found: ${doubleNaked.count}")
+    }
+
+    fun <T : Row> printFoundNakedDoubles(cell: Cell, otherCell: Cell, candidates: Candidates, rowType: T) {
+        if (SHOW_NAKED_DOUBLES) println("Found naked double $candidates in ${getCellCoordinates(cell)} and " +
+                "${getCellCoordinates(otherCell)} along ${rowType.javaClass} ${rowType.index + 1}")
+    }
+
+    fun printEliminateCandidatesFromCell(cell: Cell, candidates: Candidates) {
+        if (SHOW_NAKED_DOUBLES) println("Eliminated $candidates\n${getCellContents(cell)}")
+    }
 
     fun printCandidateTable(table: Table) {
-        var out = ""
+        var out = "\n"
 
         for (index in 0 until 27) {
             var row = table.rows[index / 3]
@@ -75,7 +91,7 @@ object Logger {
     }
 
     fun printFoundHiddenSingle(cell: Cell, value: Int) {
-        if (SHOW_HIDDEN_SINGLES) println("Hidden single found for ${CellValue.values()[value]} in $cell")
+        if (SHOW_HIDDEN_SINGLES) println("Hidden single found for ${CellValue.values()[value]}\n${getCellContents(cell)}")
     }
 
     fun printEliminateResults(eliminate: Eliminate) {
@@ -103,7 +119,7 @@ object Logger {
     }
 
     fun cellValueInitialized(cell: Cell) {
-//        println("Cell initialized ${getCellId(cell)}")
+//        println("Cell initialized ${getCellSetString(cell)}")
     }
 
     fun valueEliminated(value: CellValue, count: Int) {
@@ -111,7 +127,7 @@ object Logger {
     }
 
     fun cellValueUpdated(cell: Cell) {
-        if (SHOW_SET) println("set${getCellId(cell)}")
+        if (SHOW_SET) println("set${getCellSetString(cell)}")
     }
 
     fun <T : Row> rowValues(row: T, values: Array<CellValue>) {
@@ -119,10 +135,18 @@ object Logger {
     }
 
     fun cellSetToImmutable(cell: Cell) {
-//        println("Cell set to immutable: ${getCellId(cell)}")
+//        println("Cell set to immutable: ${getCellSetString(cell)}")
     }
 
-    private fun getCellId(cell: Cell): String {
-        return "(${cell.row.index + 1},${cell.column.index + 1}) --> ${cell.value}\t\t(${cell.rule})"
+    private fun getCellContents(cell: Cell): String {
+        return if (SHOW_CELL_CONTENTS) "$cell" else ""
+    }
+
+    private fun getCellCoordinates(cell: Cell): String {
+        return "Cell #${cell.index + 1} (${cell.row.index + 1},${cell.column.index + 1})"
+    }
+
+    private fun getCellSetString(cell: Cell): String {
+        return "${getCellCoordinates(cell)} --> ${cell.value}\t\t(${cell.rule})"
     }
 }
