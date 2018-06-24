@@ -56,6 +56,7 @@ object DoubleHidden : RuleCheck() {
         }
 
         for (index in 0 until cellList1.size) {
+
             if (cellList1[index].index != cellList2[index].index) {
                 return false
             }
