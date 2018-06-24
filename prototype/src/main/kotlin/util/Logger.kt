@@ -151,7 +151,7 @@ object Logger {
         return if (SHOW_CELL_CONTENTS) "$cell" else ""
     }
 
-    private fun getCellCoordinates(cell: Cell): String {
+    fun getCellCoordinates(cell: Cell): String {
         return "Cell (${cell.row.index + 1},${cell.column.index + 1})"
     }
 

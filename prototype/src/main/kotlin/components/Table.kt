@@ -1,6 +1,6 @@
 package components
 
-import mapping.CellMap
+import mapping.CellIndex
 import util.FileInput
 
 object Table {
@@ -10,9 +10,9 @@ object Table {
 
     var cells = Array(81)
     { i -> Cell(i,
-                blocks[CellMap.toBlockIndex(i)],
-                rows[CellMap.toRow(i)],
-                columns[CellMap.toColumn(i)])
+                blocks[CellIndex.toBlockIndex(i)],
+                rows[CellIndex.toRow(i)],
+                columns[CellIndex.toColumn(i)])
     }
 
     fun populateCellsWithValues() {
