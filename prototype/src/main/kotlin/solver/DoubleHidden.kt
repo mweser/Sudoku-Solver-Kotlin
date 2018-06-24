@@ -7,7 +7,7 @@ object DoubleHidden : RuleCheck() {
     override fun check(): Int {
         count = 0
 
-        
+
 
 
 //        Logger.printNakedDoublesResults(this)
