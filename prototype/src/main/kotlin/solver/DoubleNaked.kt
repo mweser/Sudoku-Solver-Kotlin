@@ -38,6 +38,7 @@ object DoubleNaked : RuleCheck() {
                         printFoundNakedDoubles(cell, matchingCell, cell.candidates, rowType)
                     }
                 }
+                count += SingleHidden.check()
             }
         }
     }
