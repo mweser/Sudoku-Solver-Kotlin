@@ -13,7 +13,7 @@ fun main(args: Array<String>) {
     Table.populateCellsWithValues()
     Eliminate.check()
 
-    while (counter < 3 && !isDone) {
+    while (counter < 30 && !isDone) {
         printRoundNumberAndCandidateTable(counter, Table)
         isDone = solve()
         counter++
@@ -27,6 +27,6 @@ fun solve(): Boolean {
     changes += SingleNaked.check()
     changes += SingleHidden.check()
     changes += DoubleNaked.check()
-
+    println("Changes for round: $changes")
     return changes == 0
 }

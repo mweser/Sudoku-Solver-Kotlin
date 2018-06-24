@@ -4,8 +4,8 @@ import components.CellValue.NINE
 import components.CellValue.NONE
 import components.CellValue.ONE
 import components.CellValue.values
+import util.Logger
 import util.Logger.cellValueUpdated
-import util.Logger.printEliminateCandidatesFromCell
 
 enum class CellValue {
     NONE, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE
@@ -87,9 +87,9 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
             if (candidates.candidates[index] && this.candidates.candidates[index]) {
                 this.candidates.candidates[index] = false
                 numEliminated++
+                Logger.printEliminateCandidatesFromCell(this, candidates)
             }
         }
-        printEliminateCandidatesFromCell(this, candidates)
         return numEliminated
     }
 }

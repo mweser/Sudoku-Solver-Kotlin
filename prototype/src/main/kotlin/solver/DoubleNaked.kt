@@ -12,7 +12,7 @@ object DoubleNaked : RuleCheck() {
     var count = 0
 
     override fun check(): Int {
-
+        count = 0
         for (cell in Table.cells) if (cell.getNumCandidates() == 2) {
             checkForIdenticalCandidatePair(cell)
         }
@@ -38,10 +38,8 @@ object DoubleNaked : RuleCheck() {
                         printFoundNakedDoubles(cell, matchingCell, cell.candidates, rowType)
                     }
                 }
-                count += SingleHidden.check()
             }
         }
-
     }
 
     fun doCandidatesMatch(candidates1: Candidates, candidates2: Candidates): Boolean {
