@@ -43,10 +43,6 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
         this.value = value
     }
 
-//    fun eliminateCandidates(candidates: Candidates) {
-//        candidates.eliminate()
-//    }
-
     fun eliminateCandidate(valueToEliminate: CellValue) {
         candidates.eliminateValue(valueToEliminate)
     }
@@ -78,6 +74,10 @@ class Cell(val index: Int, val block: Block, val row: Row, val column: Column) {
             Block #${block.index}: ${block.position}
 
         """.trimIndent()
+    }
+
+    fun eliminateAllCandidatesExcept(vararg values: CellValue) {
+        candidates.clearAllExcept(*values)
     }
 
     // todo this can be WAYYYY improved

@@ -1,5 +1,6 @@
 
 import components.Table
+import solver.DoubleHidden
 import solver.DoubleNaked
 import solver.Eliminate
 import solver.SingleHidden
@@ -27,6 +28,7 @@ fun solve(): Boolean {
     changes += SingleNaked.check()
     changes += SingleHidden.check()
     changes += DoubleNaked.check()
+    changes += DoubleHidden.check()
     println("Changes for round: $changes")
     return changes == 0
 }

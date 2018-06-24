@@ -32,6 +32,26 @@ class Row(val index: Int) {
         return excludedCellArray
     }
 
+    fun getCandidateValuesWithNumOccurrences(numOccurrences: Int): ArrayList<CellValue> {
+        var values = ArrayList<CellValue>()
+
+        for (value in CellValue.values()) if (getCandidateValueCount(value) == numOccurrences) {
+            values.add(value)
+        }
+
+        return values
+    }
+
+    fun getCellsWithCandidateValue(value: CellValue): ArrayList<Cell> {
+        var cellList = ArrayList<Cell>()
+
+        for (cell in cells) if (cell.candidates.contains(value)) {
+            cellList.add(cell)
+        }
+
+        return cellList
+    }
+
     fun getCandidateValueCount(value: Int): Int {
         return getCandidateValueCount(CellValue.values()[value])
     }
