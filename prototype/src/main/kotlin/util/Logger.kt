@@ -16,6 +16,7 @@ object Logger {
     val SHOW_ELIMINATE = false
     val SHOW_NAKED_SINGLES = false
     val SHOW_NAKED_DOUBLES = false
+    val SHOW_HIDDEN_DOUBLES = true
     val SHOW_HIDDEN_SINGLES = false
     val SHOW_SET = true
     val SHOW_CELL_CONTENTS = false
@@ -23,6 +24,14 @@ object Logger {
     val horizontalBar = "----------------------"
     val horizontalBarLong = "-------------------------------------------------------------------------"
     val thickHorizontalLong = "========================================================================="
+
+    fun printHiddenDoubleResults(cell1: Cell, cell2: Cell) {
+        if (SHOW_HIDDEN_DOUBLES) println("Hidden double found in cells ${getCellCoordinates(cell1)} and ${getCellCoordinates(cell2)}")
+    }
+
+    fun printHiddenDoubleElimination(cell1: Cell, cell2: Cell) {
+        if (SHOW_HIDDEN_DOUBLES && SHOW_ELIMINATE) println("Candidates eliminated for hidden double: \n$cell1 and\n $cell2")
+    }
 
     fun printNakedDoublesResults(doubleNaked: DoubleNaked) {
         if (SHOW_NAKED_DOUBLES) println("Doubles found: ${doubleNaked.count}")

@@ -3,6 +3,8 @@ package solver
 import components.Cell
 import components.Row
 import components.Table
+import util.Logger.printHiddenDoubleElimination
+import util.Logger.printHiddenDoubleResults
 
 object DoubleHidden : RuleCheck() {
 
@@ -33,13 +35,12 @@ object DoubleHidden : RuleCheck() {
                 if (doCellsHoldHiddenDouble(cellLists[0], cellLists[1])) {
 
                     count++
-                    println("Hidden double found in cells ${cellLists[0][0]} and ${cellLists[0][1]}")
+                    printHiddenDoubleResults(cellLists[0][0], cellLists[0][1])
 
                     for (cell in cellLists[0]) {
                         cell.eliminateAllCandidatesExcept(valuesList[0], valuesList[1])
                     }
-                    println("Candidates eliminated for hidden double: ${cellLists[0][0]} and ${cellLists[0][1]}")
-
+                    printHiddenDoubleElimination(cellLists[0][0], cellLists[0][1])
                     count += DoubleNaked.check()
                 }
             }
