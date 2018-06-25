@@ -44,4 +44,48 @@ class Block(index: Int): Row(index) {
         return numEliminated
     }
 
+    // todo find way to genericize this with what is also in Row
+    fun getUniqueRowForCandidateValue(value: CellValue): Int {
+        var uniqueRow = -1
+
+        if (getCandidateValueCount(value) > 3) {
+            return -1
+        }
+
+        for (cell in cells) {
+            if (cell.candidates.contains(value)) {
+                if (cell.row.index != uniqueRow && uniqueRow != -1) {
+                    return -1
+                }
+
+                if (cell.row.index == uniqueRow || uniqueRow == -1) {
+                    uniqueRow = cell.row.index
+                }
+            }
+        }
+        return uniqueRow
+    }
+
+    // todo find way to genericize this with what is also in Row
+    fun getUniqueColumnForCandidateValue(value: CellValue): Int {
+        var uniqueColumn = -1
+
+        if (getCandidateValueCount(value) > 3) {
+            return -1
+        }
+
+        for (cell in cells) {
+            if (cell.candidates.contains(value)) {
+                if (cell.column.index != uniqueColumn && uniqueColumn != -1) {
+                    return -1
+                }
+
+                if (cell.column.index == uniqueColumn || uniqueColumn == -1) {
+                    uniqueColumn = cell.column.index
+                }
+            }
+        }
+        return uniqueColumn
+    }
+
 }

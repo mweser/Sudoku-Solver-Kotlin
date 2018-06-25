@@ -32,7 +32,7 @@ object LockedCandidateClaiming : RuleCheck() {
 
             if (uniqueBlock != GridPosition.NONE) {
                 var blockIndex = BlockIndex.fromBlockPosition(uniqueBlock)
-                Table.blocks[blockIndex].eliminateCandidateFromOtherRows(value, row)
+                count += Table.blocks[blockIndex].eliminateCandidateFromOtherRows(value, row)
             }
         }
 
@@ -49,7 +49,7 @@ object LockedCandidateClaiming : RuleCheck() {
 
             if (uniqueBlock != GridPosition.NONE) {
                 var blockIndex = BlockIndex.fromBlockPosition(uniqueBlock)
-                Table.blocks[blockIndex].eliminateCandidateFromOtherColumns(value, column)
+                count += Table.blocks[blockIndex].eliminateCandidateFromOtherColumns(value, column)
             }
         }
 

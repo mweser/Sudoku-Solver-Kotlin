@@ -4,6 +4,7 @@ import solver.DoubleHidden
 import solver.DoubleNaked
 import solver.Eliminate
 import solver.LockedCandidateClaiming
+import solver.LockedCandidatePointing
 import solver.SingleHidden
 import solver.SingleNaked
 import util.Logger.printRoundNumberAndCandidateTable
@@ -28,6 +29,8 @@ fun solve(counter: Int): Boolean {
     var changes = Eliminate.check()
     changes += SingleNaked.check()
     changes += SingleHidden.check()
+    printRoundNumberAndCandidateTable(counter, Table)
+    changes += LockedCandidatePointing.check()
     printRoundNumberAndCandidateTable(counter, Table)
     changes += LockedCandidateClaiming.check()
     printRoundNumberAndCandidateTable(counter, Table)

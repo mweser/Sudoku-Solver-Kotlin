@@ -1,6 +1,7 @@
 package components
 
 import mapping.GridPosition
+import util.Logger
 import util.Mockable
 
 @Mockable
@@ -22,6 +23,21 @@ class Row(val index: Int) {
         }
     }
 
+    fun eliminateCandidateFromCellsOutsideBlock(value: CellValue, block: Block): Int {
+
+        var numEliminated = 0
+
+        for (cell in cells) {
+            if (cell.candidates.contains(value) && cell.block.index != block.index) {
+                cell.candidates.eliminateValue(value)
+                numEliminated++
+                println("Locked Candidate (Pointing): $value excluded from ${Logger.getCellCoordinates(cell)} \n$cell")
+            }
+        }
+
+        return numEliminated
+    }
+
     fun getOtherCells(vararg cellsToExclude: Cell): ArrayList<Cell> {
         var excludedCellArray = ArrayList<Cell>()
         excludedCellArray.addAll(cells)
@@ -33,6 +49,7 @@ class Row(val index: Int) {
         return excludedCellArray
     }
 
+    // todo find way to genericize this
     fun getUniqueBlockPositionForCandidateValue(value: CellValue): GridPosition {
         var blockPosition = GridPosition.NONE
 
