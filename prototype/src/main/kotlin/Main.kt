@@ -13,7 +13,7 @@ fun main(args: Array<String>) {
     var counter = 0
     var isDone = false
 
-    Table.populateCellsWithValues()
+    Table.populateCellsWithValues("test.txt")
     Eliminate.check()
 
     while (counter < 30 && !isDone) {
@@ -29,11 +29,8 @@ fun solve(counter: Int): Boolean {
     var changes = Eliminate.check()
     changes += SingleNaked.check()
     changes += SingleHidden.check()
-    printRoundNumberAndCandidateTable(counter, Table)
     changes += LockedCandidatePointing.check()
-    printRoundNumberAndCandidateTable(counter, Table)
     changes += LockedCandidateClaiming.check()
-    printRoundNumberAndCandidateTable(counter, Table)
     changes += DoubleNaked.check()
     changes += DoubleHidden.check()
 

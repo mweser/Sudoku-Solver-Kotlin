@@ -15,8 +15,8 @@ object Table {
                 columns[CellIndex.toColumn(i)])
     }
 
-    fun populateCellsWithValues() {
-        var inputArray = FileInput.importFileToPuzzleArray("hard02.txt")
+    fun populateCellsWithValues(filename: String) {
+        var inputArray = FileInput.importFileToPuzzleArray(filename)
 
         if (inputArray.size != cells.size) {
             throw Exception("Invalid input array size: ${inputArray.size}")
