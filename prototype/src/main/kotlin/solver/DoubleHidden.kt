@@ -27,10 +27,12 @@ object DoubleHidden : RuleCheck() {
             var valuesList = row.getCandidateValuesWithNumOccurrences(2)
             var cellLists = ArrayList<ArrayList<Cell>>()
 
-            if (valuesList.size == 2) {
+            if (valuesList.size >= 2) {
                 for (value in valuesList) {
                     cellLists.add(row.getCellsWithCandidateValue(value))
                 }
+
+                cellLists = reduceCellListsToMatching(cellLists)
 
                 if (doCellsHoldHiddenDouble(cellLists[0], cellLists[1])) {
 
@@ -47,6 +49,17 @@ object DoubleHidden : RuleCheck() {
         }
 
         return count
+    }
+
+    private fun reduceCellListsToMatching(cellLists: ArrayList<ArrayList<Cell>>): ArrayList<ArrayList<Cell>> {
+        var reducedLists = cellLists
+
+        for (cellList in cellLists) {
+
+
+        }
+
+        return reducedLists
     }
 
     fun doCellsHoldHiddenDouble(cellList1: ArrayList<Cell>, cellList2: ArrayList<Cell>): Boolean {
