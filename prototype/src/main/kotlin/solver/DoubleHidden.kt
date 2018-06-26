@@ -1,6 +1,7 @@
 package solver
 
 import components.Cell
+import components.CellValue
 import components.Row
 import components.Table
 import util.Logger.printHiddenDoubleElimination
@@ -36,14 +37,7 @@ object DoubleHidden : RuleCheck() {
 
                 if (doCellsHoldHiddenDouble(cellLists[0], cellLists[1])) {
 
-                    count++
-                    printHiddenDoubleResults(cellLists[0][0], cellLists[0][1])
 
-                    for (cell in cellLists[0]) {
-                        cell.eliminateAllCandidatesExcept(valuesList[0], valuesList[1])
-                    }
-                    printHiddenDoubleElimination(cellLists[0][0], cellLists[0][1])
-                    count += DoubleNaked.check()
                 }
             }
         }
@@ -54,15 +48,19 @@ object DoubleHidden : RuleCheck() {
     private fun reduceCellListsToMatching(cellLists: ArrayList<ArrayList<Cell>>): ArrayList<ArrayList<Cell>> {
         var reducedLists = cellLists
 
-        for (cellList in cellLists) {
+        for (i in 0 until cellLists.size) {
+            for (j in i until cellLists.size) {
 
 
+
+
+            }
         }
 
         return reducedLists
     }
 
-    fun doCellsHoldHiddenDouble(cellList1: ArrayList<Cell>, cellList2: ArrayList<Cell>): Boolean {
+    fun doCellsHoldHiddenDouble(valuesList: ArrayList<CellValue>,cellLists: ArrayList<ArrayList<Cell>>, cellList1: ArrayList<Cell>, cellList2: ArrayList<Cell>): Boolean {
 
         if (cellList1.size != cellList2.size || cellList1.size != 2) {
             return false
@@ -79,6 +77,14 @@ object DoubleHidden : RuleCheck() {
             }
         }
 
+        count++
+        printHiddenDoubleResults(cellList1[0], cellList1[1])
+
+        for (cell in cellLists[0]) {
+            cell.eliminateAllCandidatesExcept(valuesList[0], valuesList[1])
+        }
+        printHiddenDoubleElimination(cellList1[0], cellList1[1])
+        count += DoubleNaked.check()
 
         return true
     }
