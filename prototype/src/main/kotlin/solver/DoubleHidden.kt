@@ -35,7 +35,7 @@ object DoubleHidden : RuleCheck() {
 
                 cellLists = reduceCellListsToMatching(cellLists)
 
-                if (doCellsHoldHiddenDouble(cellLists[0], cellLists[1])) {
+                if (processAnyHiddenDoubles(cellLists[0], cellLists[1])) {
 
 
                 }
@@ -46,12 +46,14 @@ object DoubleHidden : RuleCheck() {
     }
 
     private fun reduceCellListsToMatching(cellLists: ArrayList<ArrayList<Cell>>): ArrayList<ArrayList<Cell>> {
-        var reducedLists = cellLists
+        var reducedLists = ArrayList<ArrayList<Cell>>()
 
         for (i in 0 until cellLists.size) {
             for (j in i until cellLists.size) {
 
-
+                if (hasHiddenDoublePair(cellLists[i], cellLists[j])) {
+                    reducedLists.add()
+                }
 
 
             }
@@ -60,30 +62,34 @@ object DoubleHidden : RuleCheck() {
         return reducedLists
     }
 
-    fun doCellsHoldHiddenDouble(valuesList: ArrayList<CellValue>,cellLists: ArrayList<ArrayList<Cell>>, cellList1: ArrayList<Cell>, cellList2: ArrayList<Cell>): Boolean {
+    fun hasHiddenDoublePair(cellPair1: ArrayList<Cell>, cellPair2: ArrayList<Cell>): Boolean {
+        return false
+    }
 
-        if (cellList1.size != cellList2.size || cellList1.size != 2) {
+    fun processAnyHiddenDoubles(valuesList: ArrayList<CellValue>, cellLists: ArrayList<ArrayList<Cell>>, cellPair1: ArrayList<Cell>, cellPair2: ArrayList<Cell>): Boolean {
+
+        if (cellPair1.size != cellPair2.size || cellPair1.size != 2) {
             return false
         }
 
-        for (index in 0 until cellList1.size) {
+        for (index in 0 until cellPair1.size) {
 
-            if (cellList1[index].index != cellList2[index].index) {
+            if (cellPair1[index].index != cellPair2[index].index) {
                 return false
             }
 
-            if (cellList1[index].getNumCandidates() == 2 && cellList2[index].getNumCandidates() == 2) {
+            if (cellPair1[index].getNumCandidates() == 2 && cellPair2[index].getNumCandidates() == 2) {
                 return false
             }
         }
 
         count++
-        printHiddenDoubleResults(cellList1[0], cellList1[1])
+        printHiddenDoubleResults(cellPair1[0], cellPair1[1])
 
         for (cell in cellLists[0]) {
             cell.eliminateAllCandidatesExcept(valuesList[0], valuesList[1])
         }
-        printHiddenDoubleElimination(cellList1[0], cellList1[1])
+        printHiddenDoubleElimination(cellPair1[0], cellPair1[1])
         count += DoubleNaked.check()
 
         return true
