@@ -1,6 +1,5 @@
 
 import components.Table
-import solver.DoubleHidden
 import solver.DoubleNaked
 import solver.Eliminate
 import solver.LockedCandidateClaiming
@@ -32,8 +31,6 @@ fun solve(counter: Int): Boolean {
     changes += LockedCandidatePointing.check()
     changes += LockedCandidateClaiming.check()
     changes += DoubleNaked.check()
-    changes += DoubleHidden.check()
-
 
     println("Changes for round: $changes")
     return changes == 0
