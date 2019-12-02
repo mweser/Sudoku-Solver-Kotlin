@@ -13,7 +13,9 @@ fun main(args: Array<String>) {
     var counter = 0
     var isDone = false
 
-    Table.populateCellsWithValues("hard01.txt")
+    var puzzleFileName = "hard01.txt"
+
+    Table.populateCellsWithValues(puzzleFileName)
     Eliminate.check()
 
     while (counter < 30 && !isDone) {
@@ -24,29 +26,32 @@ fun main(args: Array<String>) {
 
     printRoundNumberAndCandidateTable(counter++, Table)
 
-    checkSolution("hard01.txt.soln")
+    checkSolution("$puzzleFileName.soln")
 
     println("Done")
 }
 
 fun checkSolution(inputFile: String) {
     var solutionTable = importFileToPuzzleArray(inputFile)
-    var hasMismatch = false
+    var numMismatches = 0
 
 
     for(index in 0 until 81) {
 
-        var tableValue = Table.cells.get(index).value.ordinal
+        var tableValue = Table.cells[index].value.ordinal
         var solutionValue = solutionTable[index]
 
         if (tableValue != solutionValue) {
             println("ERROR: Mismatch for index $index. Expected: $solutionValue, Actual: $tableValue")
-            hasMismatch = true
+            numMismatches++
         }
 
     }
-    if(!hasMismatch) {
+    if(numMismatches == 0) {
         println("Puzzle is correct")
+    } else {
+        var percentCorrect = (81 - numMismatches) * 100 / 81
+        println("Puzzle is $percentCorrect% correct")
     }
 }
 
