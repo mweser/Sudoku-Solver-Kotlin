@@ -1,6 +1,5 @@
 
 import components.Table
-import solver.DoubleNaked
 import solver.Eliminate
 import solver.LockedCandidateClaiming
 import solver.LockedCandidatePointing
@@ -16,7 +15,7 @@ fun main(args: Array<String>) {
     var puzzleFileName = "hard01.txt"
 
     Table.populateCellsWithValues(puzzleFileName)
-    Eliminate.check()
+//    Eliminate.check()
 
     while (counter < 30 && !isDone) {
         printRoundNumberAndCandidateTable(counter, Table)
@@ -61,7 +60,7 @@ fun solve(counter: Int): Boolean {
     changes += SingleHidden.check()
     changes += LockedCandidatePointing.check()
     changes += LockedCandidateClaiming.check()
-    changes += DoubleNaked.check()
+//    changes += DoubleNaked.check()
 
     println("Changes for round: $changes")
     return changes == 0
