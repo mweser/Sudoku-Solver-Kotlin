@@ -4,6 +4,7 @@ import components.Block
 import components.Cell
 import components.Column
 import components.Row
+import components.Table
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito
@@ -29,7 +30,7 @@ class SingleHiddenTest {
     }
 
     @Test
-    fun check() {
+    fun check(table: Table) {
     }
 
     @Test

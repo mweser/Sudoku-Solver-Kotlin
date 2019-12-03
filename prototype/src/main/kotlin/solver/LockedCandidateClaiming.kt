@@ -11,18 +11,18 @@ object LockedCandidateClaiming : RuleCheck() {
 
     var count = 0
 
-    override fun check(): Int {
+    override fun check(table: Table): Int {
         count = 0
 
         for (index in 0 until 9) {
-            scanRowType(Table.rows[index])
-            scanRowType(Table.columns[index])
+            scanRowType(table, table.rows[index])
+            scanRowType(table, table.columns[index])
         }
 
         return count
     }
 
-    private fun scanRowType(row: Row): Int {
+    private fun scanRowType(table: Table, row: Row): Int {
 
         for (valueIndex in CellValue.ONE.ordinal until CellValue.NINE.ordinal) {
 
@@ -32,14 +32,14 @@ object LockedCandidateClaiming : RuleCheck() {
 
             if (uniqueBlock != GridPosition.NONE) {
                 var blockIndex = BlockIndex.fromBlockPosition(uniqueBlock)
-                count += Table.blocks[blockIndex].eliminateCandidateFromOtherRows(value, row)
+                count += table.blocks[blockIndex].eliminateCandidateFromOtherRows(value, row)
             }
         }
 
         return count
     }
 
-    private fun scanRowType(column: Column): Int {
+    private fun scanRowType(table: Table, column: Column): Int {
 
         for (valueIndex in CellValue.ONE.ordinal until CellValue.NINE.ordinal) {
 
@@ -49,7 +49,7 @@ object LockedCandidateClaiming : RuleCheck() {
 
             if (uniqueBlock != GridPosition.NONE) {
                 var blockIndex = BlockIndex.fromBlockPosition(uniqueBlock)
-                count += Table.blocks[blockIndex].eliminateCandidateFromOtherColumns(value, column)
+                count += table.blocks[blockIndex].eliminateCandidateFromOtherColumns(value, column)
             }
         }
 

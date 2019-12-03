@@ -3,7 +3,7 @@ package components
 import mapping.CellIndex
 import util.FileInput
 
-object Table {
+class Table {
     var blocks = Array(9) { i -> Block(i) }
     var rows = Array(9) { i -> Row(i) }
     var columns = Array(9) { i -> Column(i) }

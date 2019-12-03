@@ -8,24 +8,24 @@ object SingleNaked : RuleCheck() {
 
     var valuesSet = 0
 
-    override fun check(): Int {
+    override fun check(table: Table): Int {
         valuesSet = 0
 
-        for (cell in Table.cells) {
-            valuesSet += evaluateCell(cell)
+        for (cell in table.cells) {
+            valuesSet += evaluateCell(table, cell)
         }
 
         printNakedSingleResults(this)
         return valuesSet
     }
 
-    fun evaluateCell(cell: Cell): Int {
+    fun evaluateCell(table: Table, cell: Cell): Int {
         var newValuesSet = 0
 
         if (cell.getNumCandidates() == 1) {
             cell.setValueWithRule(cell.candidates.getRemainingCandidate(), "Naked single")
             newValuesSet++
-            newValuesSet += Eliminate.check()
+            newValuesSet += Eliminate.check(table)
         }
         return newValuesSet
     }

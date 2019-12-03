@@ -9,10 +9,10 @@ object Eliminate : RuleCheck() {
 
     var numEliminated = 0
 
-    override fun check(): Int {
+    override fun check(table: Table): Int {
         numEliminated = 0
 
-        for (cell in Table.cells) {
+        for (cell in table.cells) {
             eliminateFromCell(cell)
         }
 

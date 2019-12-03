@@ -11,18 +11,18 @@ object SingleHidden : RuleCheck() {
 
     var instancesFound = 0
 
-    override fun check(): Int {
+    override fun check(table: Table): Int {
         instancesFound = 0
 
-        for (cell in Table.cells) {
-            scanRowForUniqueCandidate(cell, cell.row, cell.column, cell.block)
+        for (cell in table.cells) {
+            scanRowForUniqueCandidate(table, cell, cell.row, cell.column, cell.block)
         }
 
         printHiddenSingleResults(this)
         return instancesFound
     }
 
-    private fun <T : Row> scanRowForUniqueCandidate(cell: Cell, vararg rowTypes: T) {
+    private fun <T : Row> scanRowForUniqueCandidate(table: Table, cell: Cell, vararg rowTypes: T) {
 
         for (row in rowTypes) {
             for (value in CellValue.ONE.ordinal..CellValue.NINE.ordinal) {
@@ -31,8 +31,8 @@ object SingleHidden : RuleCheck() {
                     instancesFound++
                     cell.setValueWithRule(CellValue.values()[value], "Hidden single")
                     printFoundHiddenSingle(cell, value)
-                    instancesFound += Eliminate.check()
-                    instancesFound += SingleNaked.check()
+                    instancesFound += Eliminate.check(table)
+                    instancesFound += SingleNaked.check(table)
                 }
             }
 

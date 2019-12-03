@@ -8,17 +8,17 @@ object LockedCandidatePointing : RuleCheck() {
 
     var count = 0
 
-    override fun check(): Int {
+    override fun check(table: Table): Int {
         count = 0
 
         for (index in 0 until 9) {
-            scanBlock(Table.blocks[index])
+            scanBlock(table, table.blocks[index])
         }
 
         return count
     }
 
-    private fun scanBlock(block: Block): Int {
+    private fun scanBlock(table: Table, block: Block): Int {
 
         for (valueIndex in CellValue.ONE.ordinal until CellValue.NINE.ordinal) {
 
@@ -28,11 +28,11 @@ object LockedCandidatePointing : RuleCheck() {
             var uniqueColumn = block.getUniqueColumnForCandidateValue(value)
 
             if (uniqueRow != -1) {
-               count += Table.rows[uniqueRow].eliminateCandidateFromCellsOutsideBlock(value, block)
+               count += table.rows[uniqueRow].eliminateCandidateFromCellsOutsideBlock(value, block)
             }
 
             if (uniqueColumn != -1) {
-               count += Table.columns[uniqueColumn].eliminateCandidateFromCellsOutsideBlock(value, block)
+               count += table.columns[uniqueColumn].eliminateCandidateFromCellsOutsideBlock(value, block)
             }
 
         }

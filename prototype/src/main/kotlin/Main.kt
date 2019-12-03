@@ -1,5 +1,6 @@
-
 import components.Table
+import solver.BruteForce
+import solver.DoubleNaked
 import solver.Eliminate
 import solver.LockedCandidateClaiming
 import solver.LockedCandidatePointing
@@ -14,30 +15,32 @@ fun main(args: Array<String>) {
 
     var puzzleFileName = "hard01.txt"
 
-    Table.populateCellsWithValues(puzzleFileName)
+    var table = Table()
+    table.populateCellsWithValues(puzzleFileName)
+
 //    Eliminate.check()
 
     while (counter < 30 && !isDone) {
-        printRoundNumberAndCandidateTable(counter, Table)
-        isDone = solve(counter)
+        printRoundNumberAndCandidateTable(counter, table)
+        isDone = solve(table, counter)
         counter++
     }
 
-    printRoundNumberAndCandidateTable(counter++, Table)
+    printRoundNumberAndCandidateTable(counter++, table)
 
-    checkSolution("$puzzleFileName.soln")
+    checkSolution(table, "$puzzleFileName.soln")
 
     println("Done")
 }
 
-fun checkSolution(inputFile: String) {
+fun checkSolution(table: Table, inputFile: String) {
     var solutionTable = importFileToPuzzleArray(inputFile)
     var numMismatches = 0
 
 
-    for(index in 0 until 81) {
+    for (index in 0 until 81) {
 
-        var tableValue = Table.cells[index].value.ordinal
+        var tableValue = table.cells[index].value.ordinal
         var solutionValue = solutionTable[index]
 
         if (tableValue != solutionValue) {
@@ -46,7 +49,7 @@ fun checkSolution(inputFile: String) {
         }
 
     }
-    if(numMismatches == 0) {
+    if (numMismatches == 0) {
         println("Puzzle is correct")
     } else {
         var percentCorrect = (81 - numMismatches) * 100 / 81
@@ -54,13 +57,15 @@ fun checkSolution(inputFile: String) {
     }
 }
 
-fun solve(counter: Int): Boolean {
-    var changes = Eliminate.check()
-    changes += SingleNaked.check()
-    changes += SingleHidden.check()
-    changes += LockedCandidatePointing.check()
-    changes += LockedCandidateClaiming.check()
-//    changes += DoubleNaked.check()
+fun solve(table: Table, counter: Int): Boolean {
+    var changes = Eliminate.check(table)
+    changes += SingleNaked.check(table)
+    changes += SingleHidden.check(table)
+    changes += LockedCandidatePointing.check(table)
+    changes += LockedCandidateClaiming.check(table)
+    changes += DoubleNaked.check(table)
+    changes += BruteForce.solve(table)
+
 
     println("Changes for round: $changes")
     return changes == 0
