@@ -7,13 +7,14 @@ object BruteForce {
     fun solve(table: Table): Int {
         var numChanges = 0
 
-        println("Using brute force to solve")
-
-
         return numChanges
     }
 
-    fun check(table: Table) {
+    fun check(table: Table): Int {
+        println("Using brute force to solve")
 
+        var numChanges = 0
+
+        return 0
     }
 }

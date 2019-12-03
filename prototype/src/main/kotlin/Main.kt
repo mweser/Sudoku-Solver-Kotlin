@@ -64,7 +64,7 @@ fun solve(table: Table, counter: Int): Boolean {
     changes += LockedCandidatePointing.check(table)
     changes += LockedCandidateClaiming.check(table)
     changes += DoubleNaked.check(table)
-    changes += BruteForce.solve(table)
+    changes += BruteForce.check(table)
 
 
     println("Changes for round: $changes")
